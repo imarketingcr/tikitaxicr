@@ -1,26 +1,175 @@
 @import "tailwindcss";
 
+/* ================================================================
+   TikiTaxi CR — Design Tokens
+   Palette: Jungle Green + Ocean Teal + Golden Hour + Warm Stone
+   ================================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand colors */
+  --color-jungle-900: #0d2b1e;
+  --color-jungle-800: #133d2a;
+  --color-jungle-700: #1a5438;
+  --color-jungle-600: #236b47;
+  --color-jungle-500: #2d8259;
+  --color-jungle-400: #3da373;
+  --color-jungle-300: #5ec492;
+  --color-jungle-200: #9adeba;
+  --color-jungle-100: #d0f3e4;
+  --color-jungle-50:  #f0fdf7;
+
+  --color-teal-700: #0f5e6e;
+  --color-teal-600: #177a8f;
+  --color-teal-500: #1e9ab3;
+  --color-teal-400: #2ebad7;
+  --color-teal-300: #69d2e7;
+  --color-teal-100: #d0f4fb;
+
+  --color-gold-600: #b45309;
+  --color-gold-500: #d97706;
+  --color-gold-400: #f59e0b;
+  --color-gold-300: #fbbf24;
+  --color-gold-100: #fef3c7;
+
+  --color-stone-900: #1c1917;
+  --color-stone-700: #44403c;
+  --color-stone-500: #78716c;
+  --color-stone-300: #d6d3d1;
+  --color-stone-100: #f5f5f4;
+  --color-stone-50:  #fafaf9;
+
+  /* Typography */
+  --font-display: var(--font-playfair), "Georgia", serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  /* Spacing rhythm */
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+  --container-max: 1200px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-stone-50);
+  --color-foreground: var(--color-stone-900);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ================================================================
+   Base styles
+   ================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background-color: var(--color-stone-50);
+  color: var(--color-stone-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+/* ================================================================
+   Focus styles — WCAG 2.1 AA visible focus
+   ================================================================ */
+
+:focus-visible {
+  outline: 3px solid var(--color-jungle-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ================================================================
+   Animations
+   ================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 130, 89, 0.5); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(45, 130, 89, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 130, 89, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease both;
+}
+
+/* ================================================================
+   Utility classes
+   ================================================================ */
+
+.container-max {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* Tropical diagonal divider */
+.diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.diagonal-top {
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-jungle-500), var(--color-teal-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

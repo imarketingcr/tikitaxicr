@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 const ALLOWED_ORIGINS = [
   "https://tikitaxicr.com",
@@ -16,7 +17,6 @@ export async function proxy(request: NextRequest) {
     if (origin && !ALLOWED_ORIGINS.includes(origin)) {
       return new NextResponse("Forbidden", { status: 403 });
     }
-    // Preflight
     if (request.method === "OPTIONS") {
       return new NextResponse(null, {
         status: 204,
@@ -32,52 +32,43 @@ export async function proxy(request: NextRequest) {
 
   // --- Auth guard for /admin routes ---
   if (pathname.startsWith("/admin")) {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
     let response = NextResponse.next({ request });
 
-    const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value }) =>
+              request.cookies.set(name, value)
+            );
+            response = NextResponse.next({ request });
+            cookiesToSet.forEach(({ name, value, options }) =>
+              response.cookies.set(name, value, options)
+            );
+          },
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          );
-          response = NextResponse.next({ request });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
-          );
-        },
-      },
-    });
+      }
+    );
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    // Read session from cookie (no network call — fast and Edge-safe)
+    const { data: { session } } = await supabase.auth.getSession();
 
-    // Allow the login page itself
+    // Authenticated users don't need the login page
     if (pathname === "/admin/login") {
+      if (session) {
+        return NextResponse.redirect(new URL("/admin", request.url));
+      }
       return response;
     }
 
-    if (!user) {
-      const loginUrl = new URL("/admin/login", request.url);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    // Verify user is in admin_users table
-    const { data: adminUser } = await supabase
-      .from("admin_users")
-      .select("id")
-      .eq("id", user.id)
-      .single();
-
-    if (!adminUser) {
-      const loginUrl = new URL("/admin/login", request.url);
-      return NextResponse.redirect(loginUrl);
+    // All other /admin/* routes require a valid session
+    if (!session) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
     }
 
     return response;
@@ -89,4 +80,3 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: ["/api/:path*", "/admin/:path*"],
 };
-

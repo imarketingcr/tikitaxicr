@@ -5,6 +5,7 @@ import type { NextRequest } from "next/server";
 const ALLOWED_ORIGINS = [
   "https://tikitaxicr.com",
   "https://www.tikitaxicr.com",
+  "https://tikitaxicr.vercel.app",
   "http://localhost:3000",
 ];
 

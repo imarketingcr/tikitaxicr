@@ -37,6 +37,14 @@ export default function AdminDashboard() {
     contact_preference: "email" as "email" | "whatsapp",
   });
 
+  // Guard: redirect to login if session expires while on the page
+  useEffect(() => {
+    const supabase = createBrowserClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) router.replace("/admin/login");
+    });
+  }, [router]);
+
   const fetchClients = useCallback(async (q = "") => {
     setLoading(true);
     const res = await fetch(`/api/clients?search=${encodeURIComponent(q)}`);

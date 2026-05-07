@@ -28,6 +28,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com",
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://dzmchqwpawbwlettazev.supabase.co https://api.resend.com https://api.cal.com https://tikitaxicr.vercel.app",
+      "media-src 'self' https://res.cloudinary.com",
       "frame-src https://cal.com https://app.cal.com",
       "worker-src 'none'",
     ].join("; "),

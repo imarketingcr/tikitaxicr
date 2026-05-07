@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 
 export function HeroSection() {
@@ -10,34 +11,23 @@ export function HeroSection() {
       aria-label="Hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background — tropical gradient with overlay */}
-      <div
-        className="absolute inset-0 z-0"
-        aria-hidden="true"
-        style={{
-          background:
-            "linear-gradient(135deg, #0d2b1e 0%, #133d2a 30%, #177a8f 70%, #0f5e6e 100%)",
-        }}
-      />
-
-      {/* Animated decorative circles */}
-      <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
-        <div
-          className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10"
-          style={{
-            background: "radial-gradient(circle, #3da373, transparent 70%)",
-          }}
+      {/* Background — real Costa Rica photo with dark overlay */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="https://res.cloudinary.com/dkpfptjvm/image/upload/v1778049707/tikitaxicr/tikitaxicr/hero-bg.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+          quality={85}
+          sizes="100vw"
         />
+        {/* Gradient overlay for text readability */}
         <div
-          className="absolute bottom-10 -left-20 w-80 h-80 rounded-full opacity-10"
+          className="absolute inset-0"
           style={{
-            background: "radial-gradient(circle, #2ebad7, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-5"
-          style={{
-            background: "radial-gradient(circle, #f59e0b, transparent 70%)",
+            background:
+              "linear-gradient(135deg, rgba(13,43,30,0.82) 0%, rgba(19,61,42,0.75) 40%, rgba(23,122,143,0.65) 100%)",
           }}
         />
       </div>

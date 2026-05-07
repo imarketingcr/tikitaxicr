@@ -59,6 +59,10 @@ export type Translations = {
     };
     timeTooltip: string;
   };
+  testimonials: {
+    title: string;
+    subtitle: string;
+  };
   footer: {
     tagline: string;
     rights: string;
@@ -137,6 +141,10 @@ export const translations: Record<Locale, Translations> = {
       timeTooltip:
         "Consultations are available Monday–Friday, 8:00 AM – 4:00 PM (Costa Rica time, GMT-6).",
     },
+    testimonials: {
+      title: "What Our Clients Say",
+      subtitle: "Real experiences from real travelers across Costa Rica",
+    },
     footer: {
       tagline: "Exploring Costa Rica, one journey at a time.",
       rights: "All rights reserved.",
@@ -213,6 +221,10 @@ export const translations: Record<Locale, Translations> = {
       },
       timeTooltip:
         "Las consultas están disponibles de lunes a viernes, de 8:00 AM a 4:00 PM (hora de Costa Rica, GMT-6).",
+    },
+    testimonials: {
+      title: "Lo Que Dicen Nuestros Clientes",
+      subtitle: "Experiencias reales de viajeros por toda Costa Rica",
     },
     footer: {
       tagline: "Explorando Costa Rica, un viaje a la vez.",

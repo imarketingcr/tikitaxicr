@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const ALLOWED_ORIGINS = [
   "https://tikitaxicr.com",
   "https://www.tikitaxicr.com",
+  "https://tikitaxicr.vercel.app",
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : "",
 ].filter(Boolean);
 
@@ -26,7 +27,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com",
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.resend.com https://api.cal.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://dzmchqwpawbwlettazev.supabase.co https://api.resend.com https://api.cal.com https://tikitaxicr.vercel.app",
       "frame-src https://cal.com https://app.cal.com",
       "worker-src 'none'",
     ].join("; "),
@@ -51,7 +52,6 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [];
   },
-  // CORS — handled in middleware, but Next also exposes this for API routes
   experimental: {
     serverActions: {
       allowedOrigins: ALLOWED_ORIGINS as string[],

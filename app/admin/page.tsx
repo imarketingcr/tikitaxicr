@@ -165,21 +165,23 @@ export default function AdminDashboard() {
       <main id="main-content" className="flex-1 p-4 md:p-6 lg:p-8">
         {/* Stats */}
         <section aria-label="Dashboard statistics" className="grid grid-cols-3 gap-4 mb-6">
-          {[
-            { label: "Total Clients", value: stats.total, color: "emerald" },
-            { label: "Upcoming This Week", value: stats.upcoming, color: "blue" },
-            { label: "Pending Confirmations", value: stats.pending, color: "amber" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="bg-white rounded-2xl border border-stone-100 shadow-sm p-5"
-            >
-              <p className="text-2xl md:text-3xl font-bold font-serif text-stone-900">
-                {s.value}
-              </p>
-              <p className="text-xs md:text-sm text-stone-500 mt-1">{s.label}</p>
-            </div>
-          ))}
+          {loading
+            ? Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-stone-100 shadow-sm p-5 animate-pulse">
+                  <div className="h-8 w-12 bg-stone-200 rounded-lg mb-2" />
+                  <div className="h-3 w-24 bg-stone-100 rounded" />
+                </div>
+              ))
+            : [
+                { label: "Total Clients",         value: stats.total },
+                { label: "Upcoming This Week",    value: stats.upcoming },
+                { label: "Pending Confirmations", value: stats.pending },
+              ].map((s) => (
+                <div key={s.label} className="bg-white rounded-2xl border border-stone-100 shadow-sm p-5">
+                  <p className="text-2xl md:text-3xl font-bold font-serif text-stone-900">{s.value}</p>
+                  <p className="text-xs md:text-sm text-stone-500 mt-1">{s.label}</p>
+                </div>
+              ))}
         </section>
 
         <div className="flex flex-col lg:flex-row gap-6">
@@ -223,7 +225,19 @@ export default function AdminDashboard() {
                 aria-label="Client list"
               >
                 {loading ? (
-                  <div className="p-8 text-center text-stone-400 text-sm">Loading…</div>
+                  <div className="divide-y divide-stone-50" aria-hidden="true">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <div key={i} className="px-4 py-3.5 animate-pulse">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1 space-y-1.5">
+                            <div className="h-3.5 w-32 bg-stone-200 rounded" />
+                            <div className="h-3 w-44 bg-stone-100 rounded" />
+                            <div className="h-3 w-20 bg-stone-100 rounded" />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 ) : clients.length === 0 ? (
                   <div className="p-8 text-center text-stone-400 text-sm">No clients found.</div>
                 ) : (

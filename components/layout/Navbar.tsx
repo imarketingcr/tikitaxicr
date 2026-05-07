@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useI18n, Locale } from "@/lib/i18n";
 
 export function Navbar() {
   const { locale, setLocale, t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -14,9 +15,36 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  // Track active section for nav highlight
+  useEffect(() => {
+    const sectionIds = ["services", "testimonials", "booking"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollTo = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navHeight = window.innerWidth >= 768 ? 80 : 64;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, []);
+
   const navLinks = [
-    { href: "#services", label: t.nav.services },
-    { href: "#booking", label: t.nav.booking },
+    { id: "services",      label: t.nav.services },
+    { id: "testimonials",  label: locale === "en" ? "Reviews" : "Opiniones" },
+    { id: "booking",       label: t.nav.booking },
   ];
 
   return (
@@ -57,15 +85,18 @@ export function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-emerald-400 ${
+            <button
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              className={`text-sm font-medium transition-colors duration-200 hover:text-emerald-400 relative ${
                 scrolled ? "text-stone-700" : "text-white/90"
-              }`}
+              } ${activeSection === link.id ? "text-emerald-400" : ""}`}
             >
               {link.label}
-            </a>
+              {activeSection === link.id && (
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-emerald-400 rounded-full" />
+              )}
+            </button>
           ))}
 
           {/* Language switcher */}
@@ -75,13 +106,12 @@ export function Navbar() {
             scrolled={scrolled}
           />
 
-          <a
-            href="#booking"
+          <button
+            onClick={() => scrollTo("booking")}
             className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-emerald-500/30 hover:scale-105"
-            aria-label={t.nav.booking}
           >
             {t.nav.booking}
-          </a>
+          </button>
         </div>
 
         {/* Mobile controls */}
@@ -125,22 +155,24 @@ export function Navbar() {
         >
           <div className="container-max py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-stone-700 font-medium py-3 px-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-700 transition-colors"
+              <button
+                key={link.id}
+                onClick={() => { scrollTo(link.id); setMenuOpen(false); }}
+                className={`text-left font-medium py-3 px-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-700 transition-colors ${
+                  activeSection === link.id
+                    ? "text-emerald-700 bg-emerald-50"
+                    : "text-stone-700"
+                }`}
               >
                 {link.label}
-              </a>
+              </button>
             ))}
-            <a
-              href="#booking"
-              onClick={() => setMenuOpen(false)}
+            <button
+              onClick={() => { scrollTo("booking"); setMenuOpen(false); }}
               className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white text-center font-semibold py-3 px-5 rounded-full transition-colors"
             >
               {t.nav.booking}
-            </a>
+            </button>
           </div>
         </div>
       )}

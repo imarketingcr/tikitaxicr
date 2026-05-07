@@ -68,6 +68,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offset anchor targets to clear the fixed navbar (h-16 mobile / h-20 desktop) */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--color-stone-50);

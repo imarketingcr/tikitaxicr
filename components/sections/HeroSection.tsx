@@ -100,8 +100,13 @@ export function HeroSection() {
           className="animate-fade-in-up"
           style={{ animationDelay: "0.55s" }}
         >
-          <a
-            href="#booking"
+          <button
+            onClick={() => {
+              const el = document.getElementById("booking");
+              if (!el) return;
+              const top = el.getBoundingClientRect().top + window.scrollY - 88;
+              window.scrollTo({ top, behavior: "smooth" });
+            }}
             className="inline-flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg px-8 py-4 rounded-full shadow-2xl shadow-emerald-900/50 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105 group focus-visible:outline-white"
             aria-label={t.hero.cta}
           >
@@ -122,7 +127,7 @@ export function HeroSection() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </button>
         </div>
 
         {/* Scroll indicator */}

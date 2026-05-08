@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { useI18n } from "@/lib/i18n";
 
-const WHATSAPP_NUMBER = "50688888888"; // TODO: replace with client's real number
+const WHATSAPP_NUMBER = "50660557155";
 
 const SLIDES = [
   {

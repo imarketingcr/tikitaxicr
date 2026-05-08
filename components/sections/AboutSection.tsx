@@ -106,7 +106,7 @@ export function AboutSection() {
                 {t.hero.cta}
               </button>
               <a
-                href="https://wa.me/50688888888"
+                href="https://wa.me/50660557155"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-emerald-700 font-semibold text-sm hover:text-emerald-500 underline underline-offset-4 transition-colors"

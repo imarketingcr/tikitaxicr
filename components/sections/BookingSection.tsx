@@ -81,7 +81,7 @@ export function BookingSection() {
                 Prefer to chat directly?
               </p>
               <a
-                href="https://wa.me/50688888888"
+                href="https://wa.me/50660557155"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-emerald-700 font-semibold text-sm hover:text-emerald-900 transition-colors"

@@ -40,13 +40,13 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/50688888888"
+                  href="https://wa.me/50660557155"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-emerald-400 transition-colors"
                   aria-label="WhatsApp TikiTaxi CR (opens in new tab)"
                 >
-                  WhatsApp: +506 8888-8888
+                  WhatsApp: +506 6055-7155
                 </a>
               </li>
               <li className="text-stone-500">San José, Costa Rica</li>

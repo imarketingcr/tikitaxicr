@@ -15,18 +15,42 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const OG_IMAGE =
+  "https://res.cloudinary.com/djgv9sagr/image/upload/c_fill,w_1200,h_630,g_auto,q_auto/v1778200924/volcano_cr_zszooa.jpg";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://tikitaxicr.com"),
   title: "TikiTaxi CR — Private Driver & Tours in Costa Rica",
   description:
     "Bilingual private taxi and custom tour service in Costa Rica. Airport transfers, personalized tours, and executive transport. Book your free consultation today.",
   keywords:
-    "Costa Rica taxi, private driver Costa Rica, Costa Rica tours, airport transfer Costa Rica, TikiTaxi",
+    "Costa Rica taxi, private driver Costa Rica, Costa Rica tours, airport transfer Costa Rica, TikiTaxi, taxi Costa Rica, tours privados Costa Rica",
   openGraph: {
     title: "TikiTaxi CR — Private Driver & Tours in Costa Rica",
     description:
       "Bilingual. Reliable. Unforgettable experiences across Costa Rica.",
     type: "website",
     locale: "en_US",
+    url: "https://tikitaxicr.com",
+    siteName: "TikiTaxi CR",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "TikiTaxi CR — Private Driver & Tours in Costa Rica",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TikiTaxi CR — Private Driver & Tours in Costa Rica",
+    description:
+      "Bilingual. Reliable. Unforgettable experiences across Costa Rica.",
+    images: [OG_IMAGE],
+  },
+  alternates: {
+    canonical: "https://tikitaxicr.com",
   },
 };
 

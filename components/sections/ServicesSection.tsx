@@ -1,6 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
+
+const TAXI_PHOTOS = [
+  {
+    src: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778199925/taxi-1_uu9h3w.jpg",
+    alt: "TikiTaxi CR vehicle — exterior",
+  },
+  {
+    src: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778199892/taxi-2_yms2py.jpg",
+    alt: "TikiTaxi CR vehicle — side view",
+  },
+  {
+    src: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778199936/taxi-3_cttwt5.jpg",
+    alt: "TikiTaxi CR vehicle — interior",
+  },
+];
 
 const SERVICE_ICONS = {
   airport: (
@@ -128,6 +144,30 @@ export function ServicesSection() {
               </article>
             );
           })}
+        </div>
+
+        {/* Vehicle photo strip */}
+        <div className="mt-14 mb-14">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">
+            Our Vehicle
+          </p>
+          <div className="grid grid-cols-3 gap-3 md:gap-5 rounded-3xl overflow-hidden">
+            {TAXI_PHOTOS.map((photo) => (
+              <div
+                key={photo.src}
+                className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover object-center hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 33vw, 30vw"
+                  quality={80}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA strip */}

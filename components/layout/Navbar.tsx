@@ -17,7 +17,7 @@ export function Navbar() {
 
   // Track active section for nav highlight
   useEffect(() => {
-    const sectionIds = ["services", "testimonials", "booking"];
+    const sectionIds = ["services", "about", "testimonials", "booking"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -43,6 +43,7 @@ export function Navbar() {
 
   const navLinks = [
     { id: "services",      label: t.nav.services },
+    { id: "about",         label: locale === "en" ? "About" : "Nosotros" },
     { id: "testimonials",  label: locale === "en" ? "Reviews" : "Opiniones" },
     { id: "booking",       label: t.nav.booking },
   ];

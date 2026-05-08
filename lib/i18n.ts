@@ -15,6 +15,9 @@ export type Translations = {
     headline: string;
     subheadline: string;
     cta: string;
+    ctaWhatsapp: string;
+    slide1Subtitle: string;
+    slide2Subtitle: string;
   };
   services: {
     title: string;
@@ -81,6 +84,9 @@ export const translations: Record<Locale, Translations> = {
       headline: "Your Private Driver & Tour Expert in Costa Rica",
       subheadline: "Bilingual. Reliable. Unforgettable experiences.",
       cta: "Book a Free Consultation",
+      ctaWhatsapp: "Chat on WhatsApp",
+      slide1Subtitle: "Volcano adventures, rainforest trails & private transfers.",
+      slide2Subtitle: "Guanacaste beaches, sunset tours & executive transport.",
     },
     services: {
       title: "What We Offer",
@@ -161,6 +167,9 @@ export const translations: Record<Locale, Translations> = {
       headline: "Tu Conductor Privado y Experto en Tours en Costa Rica",
       subheadline: "Bilingüe. Confiable. Experiencias inolvidables.",
       cta: "Agenda una Consulta Gratuita",
+      ctaWhatsapp: "Escríbenos por WhatsApp",
+      slide1Subtitle: "Aventuras en volcanes, senderos y traslados privados.",
+      slide2Subtitle: "Playas de Guanacaste, tours al atardecer y transporte ejecutivo.",
     },
     services: {
       title: "Lo Que Ofrecemos",

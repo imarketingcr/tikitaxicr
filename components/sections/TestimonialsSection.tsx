@@ -5,10 +5,10 @@ import { useI18n } from "@/lib/i18n";
 const CLOUD = "djgv9sagr";
 
 const VIDEOS: { id: string; version: string; name: string; origin: string }[] = [
-  { id: "testimonial-1_dharkf", version: "v1778124303", name: "— —", origin: "— —" },
-  { id: "testimonial-2_kcllzk", version: "v1778124302", name: "— —", origin: "— —" },
-  { id: "testimonial-3_m2ox69", version: "v1778124302", name: "— —", origin: "— —" },
-  { id: "testimonial-4_lkbf7k", version: "v1778124301", name: "— —", origin: "— —" },
+  { id: "testimonial-1_dharkf", version: "v1778124303", name: "Florian",            origin: "Austria" },
+  { id: "testimonial-2_kcllzk", version: "v1778124302", name: "Kassy",              origin: "Tennessee, USA" },
+  { id: "testimonial-3_m2ox69", version: "v1778124302", name: "Jeff",               origin: "Canada" },
+  { id: "testimonial-4_lkbf7k", version: "v1778124301", name: "Gonzalo & Patricia", origin: "Spain" },
 ];
 
 function videoUrl(id: string, version: string) {

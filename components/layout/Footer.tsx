@@ -26,7 +26,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <p className="font-semibold text-white text-sm uppercase tracking-wider mb-3">
-              Contact
+              {t.footer.contactHeading}
             </p>
             <ul className="space-y-2 text-sm text-stone-400">
               <li>
@@ -56,7 +56,7 @@ export function Footer() {
           {/* Links */}
           <div>
             <p className="font-semibold text-white text-sm uppercase tracking-wider mb-3">
-              Services
+              {t.footer.servicesHeading}
             </p>
             <ul className="space-y-2 text-sm">
               {[

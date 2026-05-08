@@ -32,7 +32,7 @@ export function BookingSection() {
           {/* Left: info panel */}
           <div className="lg:col-span-2">
             <span className="inline-block text-emerald-600 text-sm font-bold uppercase tracking-widest mb-3">
-              Free Consultation
+              {t.booking.eyebrow}
             </span>
             <h2
               id="booking-heading"
@@ -47,21 +47,9 @@ export function BookingSection() {
             {/* What to expect */}
             <div className="space-y-4">
               {[
-                {
-                  icon: "📅",
-                  title: "1-Hour Video Call",
-                  desc: "A dedicated session with your personal Costa Rica expert.",
-                },
-                {
-                  icon: "🗺️",
-                  title: "Custom Itinerary",
-                  desc: "We design your perfect trip based on your interests and budget.",
-                },
-                {
-                  icon: "✅",
-                  title: "No Commitment",
-                  desc: "The consultation is completely free. No obligation.",
-                },
+                { icon: "📅", title: t.booking.point1Title, desc: t.booking.point1Desc },
+                { icon: "🗺️", title: t.booking.point2Title, desc: t.booking.point2Desc },
+                { icon: "✅", title: t.booking.point3Title, desc: t.booking.point3Desc },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
                   <span className="text-2xl leading-none mt-0.5" aria-hidden="true">
@@ -78,7 +66,7 @@ export function BookingSection() {
             {/* WhatsApp direct link */}
             <div className="mt-8 p-4 bg-emerald-50 border border-emerald-100 rounded-2xl">
               <p className="text-sm text-stone-600 mb-2">
-                Prefer to chat directly?
+                {t.booking.chatDirect}
               </p>
               <a
                 href="https://wa.me/50660557155"
@@ -88,16 +76,10 @@ export function BookingSection() {
                 aria-label="Chat on WhatsApp (opens in new tab)"
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path
-                    d="M10 2C5.58 2 2 5.58 2 10c0 1.57.43 3.04 1.18 4.3L2 18l3.82-1.16A8 8 0 1010 2z"
-                    fill="#25D366"
-                  />
-                  <path
-                    d="M7.5 6.5c-.28 0-.72.1-.87.7-.2.77.13 2.4 1.87 3.93 1.53 1.35 3.2 1.82 4 1.67.7-.13.87-.7.87-.87v-.73c0-.2-.13-.33-.3-.4l-1.3-.53c-.17-.07-.37-.03-.5.1l-.5.5c-.1.1-.27.13-.4.07a4.93 4.93 0 01-2.4-2.37c-.07-.13-.03-.3.07-.4l.5-.5c.13-.13.17-.33.1-.5l-.53-1.3C8.1 6.63 7.97 6.5 7.77 6.5H7.5z"
-                    fill="white"
-                  />
+                  <path d="M10 2C5.58 2 2 5.58 2 10c0 1.57.43 3.04 1.18 4.3L2 18l3.82-1.16A8 8 0 1010 2z" fill="#25D366" />
+                  <path d="M7.5 6.5c-.28 0-.72.1-.87.7-.2.77.13 2.4 1.87 3.93 1.53 1.35 3.2 1.82 4 1.67.7-.13.87-.7.87-.87v-.73c0-.2-.13-.33-.3-.4l-1.3-.53c-.17-.07-.37-.03-.5.1l-.5.5c-.1.1-.27.13-.4.07a4.93 4.93 0 01-2.4-2.37c-.07-.13-.03-.3.07-.4l.5-.5c.13-.13.17-.33.1-.5l-.53-1.3C8.1 6.63 7.97 6.5 7.77 6.5H7.5z" fill="white" />
                 </svg>
-                Message on WhatsApp
+                {t.booking.chatWhatsapp}
               </a>
             </div>
           </div>

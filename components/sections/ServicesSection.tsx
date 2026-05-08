@@ -52,20 +52,7 @@ const SERVICE_ICONS = {
 export function ServicesSection() {
   const { t } = useI18n();
 
-  const services = [
-    {
-      key: "airport" as const,
-      features: ["A/C & WiFi", "GPS Navigation", "Full Insurance", "Door-to-door"],
-    },
-    {
-      key: "tours" as const,
-      features: ["Custom Itinerary", "Any Budget", "Any Interest", "Bilingual Guide"],
-    },
-    {
-      key: "executive" as const,
-      features: ["Clean Vehicle", "Sober Driver", "Professional", "Punctual"],
-    },
-  ];
+  const services = (["airport", "tours", "executive"] as const);
 
   return (
     <section
@@ -77,7 +64,7 @@ export function ServicesSection() {
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
           <span className="inline-block text-emerald-600 text-sm font-bold uppercase tracking-widest mb-3">
-            What We Do
+            {t.services.eyebrow}
           </span>
           <h2
             id="services-heading"
@@ -92,51 +79,28 @@ export function ServicesSection() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, i) => {
-            const svc = t.services[service.key];
+          {services.map((key, i) => {
+            const svc = t.services[key];
             return (
               <article
-                key={service.key}
+                key={key}
                 className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-stone-100 overflow-hidden"
-                aria-labelledby={`service-${service.key}-title`}
+                aria-labelledby={`service-${key}-title`}
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
-                {/* Decorative corner */}
                 <div
                   aria-hidden="true"
                   className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top right, #d0f3e4, transparent 70%)",
-                  }}
+                  style={{ background: "radial-gradient(circle at top right, #d0f3e4, transparent 70%)" }}
                 />
-
-                {/* Icon */}
-                <div className="mb-5">{SERVICE_ICONS[service.key]}</div>
-
-                {/* Title */}
-                <h3
-                  id={`service-${service.key}-title`}
-                  className="font-serif text-xl font-bold text-stone-900 mb-3"
-                >
+                <div className="mb-5">{SERVICE_ICONS[key]}</div>
+                <h3 id={`service-${key}-title`} className="font-serif text-xl font-bold text-stone-900 mb-3">
                   {svc.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-stone-500 text-sm leading-relaxed mb-6">
-                  {svc.desc}
-                </p>
-
-                {/* Feature tags */}
-                <ul
-                  className="flex flex-wrap gap-2"
-                  aria-label={`Features of ${svc.title}`}
-                >
-                  {service.features.map((f) => (
-                    <li
-                      key={f}
-                      className="text-xs font-medium bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-100"
-                    >
+                <p className="text-stone-500 text-sm leading-relaxed mb-6">{svc.desc}</p>
+                <ul className="flex flex-wrap gap-2" aria-label={`Features of ${svc.title}`}>
+                  {svc.features.map((f) => (
+                    <li key={f} className="text-xs font-medium bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-100">
                       {f}
                     </li>
                   ))}
@@ -149,7 +113,7 @@ export function ServicesSection() {
         {/* Vehicle photo strip */}
         <div className="mt-14 mb-14">
           <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">
-            Our Vehicle
+            {t.services.vehicleLabel}
           </p>
           <div className="grid grid-cols-3 gap-3 md:gap-5 rounded-3xl overflow-hidden">
             {TAXI_PHOTOS.map((photo) => (
@@ -180,18 +144,16 @@ export function ServicesSection() {
           <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 px-8 py-10 md:px-12 md:py-12">
             <div>
               <p className="font-serif text-2xl md:text-3xl font-bold text-white mb-1">
-                Ready to explore Costa Rica?
+                {t.services.ctaTitle}
               </p>
-              <p className="text-white/70 text-sm">
-                Book a free 1-hour consultation with your personal travel expert.
-              </p>
+              <p className="text-white/70 text-sm">{t.services.ctaSubtitle}</p>
             </div>
             <a
               href="#booking"
               className="shrink-0 bg-white text-emerald-800 font-bold px-7 py-3.5 rounded-full hover:bg-amber-300 hover:text-stone-900 transition-all duration-300 shadow-lg hover:scale-105"
               aria-label="Scroll to booking form"
             >
-              Book Free Consultation
+              {t.services.ctaButton}
             </a>
           </div>
         </div>

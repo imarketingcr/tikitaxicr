@@ -112,7 +112,7 @@ export function HeroSection() {
           style={{ animationDelay: "0.1s" }}
         >
           <span aria-hidden="true">🌴</span>
-          Costa Rica
+          {t.hero.badge}
         </div>
 
         {/* Headline */}
@@ -146,9 +146,9 @@ export function HeroSection() {
           aria-label="Service highlights"
         >
           {[
-            { icon: "✓", text: "Bilingual Service" },
-            { icon: "✓", text: "Licensed & Insured" },
-            { icon: "✓", text: "Free Consultation" },
+            { icon: "✓", text: t.hero.trust1 },
+            { icon: "✓", text: t.hero.trust2 },
+            { icon: "✓", text: t.hero.trust3 },
           ].map((badge) => (
             <span
               key={badge.text}

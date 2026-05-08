@@ -21,10 +21,10 @@ const TAXI_PHOTOS = [
 const SERVICE_ICONS = {
   airport: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d0f3e4" />
+      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
       <path
         d="M8 24l5-2 7-10 3 3-5 4 8 5-2 2-8-3-3 3-2-2 3-3-6 3z"
-        fill="#236b47"
+        fill="#2D6A4F"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -32,19 +32,19 @@ const SERVICE_ICONS = {
   ),
   tours: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d0f3e4" />
-      <path d="M10 28c3-6 6-4 10-8s7-8 10-6" stroke="#236b47" strokeWidth="2" fill="none" strokeLinecap="round" />
-      <circle cx="20" cy="17" r="4" stroke="#236b47" strokeWidth="2" />
-      <path d="M20 21v7" stroke="#236b47" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
+      <path d="M10 28c3-6 6-4 10-8s7-8 10-6" stroke="#2D6A4F" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <circle cx="20" cy="17" r="4" stroke="#2D6A4F" strokeWidth="2" />
+      <path d="M20 21v7" stroke="#2D6A4F" strokeWidth="2" strokeLinecap="round" />
     </svg>
   ),
   executive: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d0f3e4" />
-      <rect x="8" y="18" width="24" height="10" rx="3" stroke="#236b47" strokeWidth="2" />
-      <path d="M12 18v-3a1 1 0 011-1h14a1 1 0 011 1v3" stroke="#236b47" strokeWidth="2" />
-      <circle cx="13" cy="30" r="2" fill="#236b47" />
-      <circle cx="27" cy="30" r="2" fill="#236b47" />
+      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
+      <rect x="8" y="18" width="24" height="10" rx="3" stroke="#2D6A4F" strokeWidth="2" />
+      <path d="M12 18v-3a1 1 0 011-1h14a1 1 0 011 1v3" stroke="#2D6A4F" strokeWidth="2" />
+      <circle cx="13" cy="30" r="2" fill="#2D6A4F" />
+      <circle cx="27" cy="30" r="2" fill="#2D6A4F" />
     </svg>
   ),
 };
@@ -91,7 +91,7 @@ export function ServicesSection() {
                 <div
                   aria-hidden="true"
                   className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: "radial-gradient(circle at top right, #d0f3e4, transparent 70%)" }}
+                  style={{ background: "radial-gradient(circle at top right, #d4ebde, transparent 70%)" }}
                 />
                 <div className="mb-5">{SERVICE_ICONS[key]}</div>
                 <h3 id={`service-${key}-title`} className="font-serif text-xl font-bold text-stone-900 mb-3">
@@ -138,7 +138,7 @@ export function ServicesSection() {
         <div
           className="mt-16 rounded-3xl overflow-hidden relative"
           style={{
-            background: "linear-gradient(135deg, #133d2a, #177a8f)",
+            background: "linear-gradient(135deg, #023047, #2D6A4F)",
           }}
         >
           <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6 px-8 py-10 md:px-12 md:py-12">

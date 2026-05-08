@@ -31,7 +31,7 @@ export function AboutSection() {
                 className="absolute -inset-4 rounded-full opacity-20"
                 style={{
                   background:
-                    "radial-gradient(circle, #177a8f 0%, transparent 70%)",
+                    "radial-gradient(circle, #023047 0%, transparent 70%)",
                 }}
               />
               {/* Caricature image */}

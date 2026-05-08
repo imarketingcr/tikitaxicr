@@ -2,34 +2,37 @@
 
 /* ================================================================
    TikiTaxi CR — Design Tokens
-   Palette: Jungle Green + Ocean Teal + Golden Hour + Warm Stone
+   Palette: Coastal Vibe — Palm Green + Night Blue + Sun Yellow + Sunset Red
    ================================================================ */
 
 :root {
-  /* Brand colors */
-  --color-jungle-900: #0d2b1e;
-  --color-jungle-800: #133d2a;
-  --color-jungle-700: #1a5438;
-  --color-jungle-600: #236b47;
-  --color-jungle-500: #2d8259;
-  --color-jungle-400: #3da373;
-  --color-jungle-300: #5ec492;
-  --color-jungle-200: #9adeba;
-  --color-jungle-100: #d0f3e4;
-  --color-jungle-50:  #f0fdf7;
+  /* Brand colors — Palm Green (#2D6A4F) scale */
+  --color-jungle-900: #0d2219;
+  --color-jungle-800: #152e23;
+  --color-jungle-700: #1f4535;
+  --color-jungle-600: #2D6A4F;
+  --color-jungle-500: #368a5f;
+  --color-jungle-400: #47a374;
+  --color-jungle-300: #75be97;
+  --color-jungle-200: #a9d7bd;
+  --color-jungle-100: #d4ebde;
+  --color-jungle-50:  #eef7f2;
 
-  --color-teal-700: #0f5e6e;
-  --color-teal-600: #177a8f;
-  --color-teal-500: #1e9ab3;
-  --color-teal-400: #2ebad7;
-  --color-teal-300: #69d2e7;
-  --color-teal-100: #d0f4fb;
+  /* Night Blue (#023047) scale */
+  --color-teal-700: #012233;
+  --color-teal-600: #023047;
+  --color-teal-500: #034a6e;
+  --color-teal-400: #056294;
+  --color-teal-300: #3a8fb5;
+  --color-teal-100: #c8e4f0;
 
-  --color-gold-600: #b45309;
-  --color-gold-500: #d97706;
-  --color-gold-400: #f59e0b;
-  --color-gold-300: #fbbf24;
-  --color-gold-100: #fef3c7;
+  /* Sun Yellow (#FFB703) scale */
+  --color-gold-700: #b38000;
+  --color-gold-600: #cc9200;
+  --color-gold-500: #e6a500;
+  --color-gold-400: #FFB703;
+  --color-gold-300: #ffd14d;
+  --color-gold-100: #fff3c4;
 
   --color-stone-900: #1c1917;
   --color-stone-700: #44403c;
@@ -52,6 +55,34 @@
   --color-foreground: var(--color-stone-900);
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
+
+  /* Override Tailwind's emerald scale → Palm Green (#2D6A4F) */
+  --color-emerald-950: #081410;
+  --color-emerald-900: #102819;
+  --color-emerald-800: #1a4231;
+  --color-emerald-700: #245a42;
+  --color-emerald-600: #2D6A4F;
+  --color-emerald-500: #368a5f;
+  --color-emerald-400: #47a374;
+  --color-emerald-300: #75be97;
+  --color-emerald-200: #a9d7bd;
+  --color-emerald-100: #d4ebde;
+  --color-emerald-50:  #eef7f2;
+
+  /* Override Tailwind's amber scale → Sun Yellow (#FFB703) */
+  --color-amber-800: #8f6600;
+  --color-amber-700: #b38000;
+  --color-amber-600: #cc9200;
+  --color-amber-500: #e6a500;
+  --color-amber-400: #FFB703;
+  --color-amber-300: #ffd14d;
+  --color-amber-200: #ffe58a;
+  --color-amber-100: #fff3c4;
+  --color-amber-50:  #fffbeb;
+
+  /* Sunset Red — use sparingly for accents */
+  --color-red-600: #D00000;
+  --color-red-700: #a80000;
 }
 
 /* ================================================================
@@ -129,9 +160,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-ring {
-  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 130, 89, 0.5); }
-  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(45, 130, 89, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 130, 89, 0); }
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.5); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(45, 106, 79, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0); }
 }
 
 .animate-fade-in-up {
@@ -179,7 +210,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-jungle-500), var(--color-teal-500));
+  background: linear-gradient(135deg, var(--color-jungle-600), var(--color-teal-600));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

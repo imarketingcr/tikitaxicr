@@ -12,18 +12,18 @@ export function BookingSection() {
       aria-labelledby="booking-heading"
       className="section-padding relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #f0fdf7 0%, #fafaf9 100%)",
+        background: "linear-gradient(180deg, #eef7f2 0%, #fafaf9 100%)",
       }}
     >
       {/* Background decoration */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-30"
-          style={{ background: "radial-gradient(circle, #d0f3e4, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, #d4ebde, transparent 70%)" }}
         />
         <div
           className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-20"
-          style={{ background: "radial-gradient(circle, #d0f4fb, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, #c8e4f0, transparent 70%)" }}
         />
       </div>
 

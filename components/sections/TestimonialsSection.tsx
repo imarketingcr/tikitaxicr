@@ -26,24 +26,27 @@ export function TestimonialsSection() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="py-20 md:py-28 bg-white"
+      className="py-20 md:py-28 bg-[#111111]"
     >
       <div className="container-max px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-4">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <div
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-4 border text-amber-400"
+            style={{ background: "rgba(45,106,79,0.2)", borderColor: "#2D6A4F" }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFB703" aria-hidden="true">
               <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
             </svg>
             {t.testimonials.badge}
           </div>
           <h2
             id="testimonials-heading"
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 mb-4"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-amber-400 mb-4"
           >
             {t.testimonials.title}
           </h2>
-          <p className="text-lg text-stone-500 max-w-xl mx-auto">
+          <p className="text-lg text-white/60 max-w-xl mx-auto">
             {t.testimonials.subtitle}
           </p>
         </div>
@@ -53,7 +56,10 @@ export function TestimonialsSection() {
           {VIDEOS.map(({ id, version, name, origin }, index) => (
             <div
               key={id}
-              className="group flex flex-col rounded-2xl overflow-hidden border border-stone-100 shadow-sm hover:shadow-lg transition-shadow duration-300"
+              className="group flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
+              style={{ background: "#1a1a1a", border: "1px solid #2D6A4F" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "#FFB703"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "#2D6A4F"; }}
             >
               {/* Video player */}
               <div className="relative bg-stone-900 aspect-video">
@@ -69,7 +75,10 @@ export function TestimonialsSection() {
               </div>
 
               {/* Card footer */}
-              <div className="px-4 py-3 bg-stone-50 border-t border-stone-100">
+              <div
+                className="px-4 py-3 border-t"
+                style={{ background: "#111111", borderColor: "rgba(45,106,79,0.3)" }}
+              >
                 {/* Star rating */}
                 <div className="flex items-center gap-0.5 mb-1.5" aria-label="5 out of 5 stars">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -78,9 +87,9 @@ export function TestimonialsSection() {
                     </svg>
                   ))}
                 </div>
-                {/* Name & origin — update these values in VIDEOS array above */}
-                <p className="text-sm font-semibold text-stone-800 leading-tight">{name}</p>
-                <p className="text-xs text-stone-400">{origin}</p>
+                {/* Name & origin */}
+                <p className="text-sm font-semibold text-white leading-tight">{name}</p>
+                <p className="text-xs text-white/50">{origin}</p>
               </div>
             </div>
           ))}

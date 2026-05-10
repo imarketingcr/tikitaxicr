@@ -62,9 +62,13 @@ export default function HomePage() {
       <Navbar />
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
+        <hr className="section-divider" aria-hidden="true" />
         <ServicesSection />
+        <hr className="section-divider" aria-hidden="true" />
         <AboutSection />
+        <hr className="section-divider" aria-hidden="true" />
         <TestimonialsSection />
+        <hr className="section-divider" aria-hidden="true" />
         <BookingSection />
       </main>
       <Footer />

@@ -6,6 +6,15 @@
    ================================================================ */
 
 :root {
+  /* Semantic brand tokens */
+  --color-primary: #2D6A4F;
+  --color-accent: #FFB703;
+  --color-warm: #D00000;
+  --color-deep: #023047;
+  --color-dark: #0A0A0A;
+  --color-light: #F5F0E8;
+  --font-righteous: var(--font-righteous-var), cursive;
+
   /* Brand colors — Palm Green (#2D6A4F) scale */
   --color-jungle-900: #0d2219;
   --color-jungle-800: #152e23;
@@ -55,6 +64,7 @@
   --color-foreground: var(--color-stone-900);
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
+  --font-righteous: var(--font-righteous-var), cursive;
 
   /* Override Tailwind's emerald scale → Palm Green (#2D6A4F) */
   --color-emerald-950: #081410;
@@ -120,7 +130,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-righteous-var), var(--font-display);
   line-height: 1.2;
 }
 
@@ -214,4 +224,13 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #2D6A4F, #FFB703, #D00000);
+  margin: 0;
+  display: block;
 }

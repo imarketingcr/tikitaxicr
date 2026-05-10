@@ -51,11 +51,10 @@ export function Navbar() {
   return (
     <header
       role="banner"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md ${
+        scrolled ? "border-b-2 border-amber-400" : ""
       }`}
+      style={{ background: "rgba(2,48,71,0.95)" }}
     >
       <nav
         aria-label="Main navigation"
@@ -67,20 +66,12 @@ export function Navbar() {
           className="flex items-center gap-2 group focus-visible:outline-offset-4"
           aria-label="TikiTaxi CR — Home"
         >
-          <span
-            className={`text-xl md:text-2xl font-serif font-bold transition-colors duration-300 ${
-              scrolled ? "text-emerald-800" : "text-white"
-            }`}
-          >
-            TikiTaxi
-          </span>
-          <span
-            className={`text-xl md:text-2xl font-serif font-bold transition-colors duration-300 ${
-              scrolled ? "text-amber-600" : "text-amber-300"
-            }`}
-          >
-            CR
-          </span>
+          <div className="flex items-center gap-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://res.cloudinary.com/djgv9sagr/image/upload/h_72,q_auto,f_auto/v1778334732/mascara-lower_qxlkvh.png" alt="" aria-hidden="true" style={{ height: '36px', width: 'auto' }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="https://res.cloudinary.com/djgv9sagr/image/upload/h_56,q_auto,f_auto/v1778334742/tikistaxi-lower_mjbvuc.png" alt="TikisTaxi CR" style={{ height: '28px', width: 'auto' }} />
+          </div>
         </a>
 
         {/* Desktop nav */}
@@ -89,13 +80,13 @@ export function Navbar() {
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className={`text-sm font-medium transition-colors duration-200 hover:text-emerald-400 relative ${
-                scrolled ? "text-stone-700" : "text-white/90"
-              } ${activeSection === link.id ? "text-emerald-400" : ""}`}
+              className={`text-sm font-medium transition-colors duration-200 hover:text-amber-400 relative text-white/80 ${
+                activeSection === link.id ? "text-amber-400" : ""
+              }`}
             >
               {link.label}
               {activeSection === link.id && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-emerald-400 rounded-full" />
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-amber-400 rounded-full" />
               )}
             </button>
           ))}
@@ -104,12 +95,11 @@ export function Navbar() {
           <LocaleSwitcher
             locale={locale}
             setLocale={setLocale}
-            scrolled={scrolled}
           />
 
           <button
             onClick={() => scrollTo("booking")}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-emerald-500/30 hover:scale-105"
+            className="bg-[#D00000] hover:bg-red-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:scale-105"
           >
             {t.nav.booking}
           </button>
@@ -120,18 +110,13 @@ export function Navbar() {
           <LocaleSwitcher
             locale={locale}
             setLocale={setLocale}
-            scrolled={scrolled}
           />
           <button
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((o) => !o)}
-            className={`p-2 rounded-lg transition-colors ${
-              scrolled
-                ? "text-stone-700 hover:bg-stone-100"
-                : "text-white hover:bg-white/10"
-            }`}
+            className="p-2 rounded-lg transition-colors text-white"
           >
             {menuOpen ? (
               <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -152,17 +137,18 @@ export function Navbar() {
           id="mobile-menu"
           role="navigation"
           aria-label="Mobile navigation"
-          className="md:hidden bg-white/97 backdrop-blur-md border-t border-stone-100 shadow-lg animate-fade-in"
+          className="md:hidden backdrop-blur-md border-t border-white/10 shadow-lg animate-fade-in"
+          style={{ background: "#023047" }}
         >
           <div className="container-max py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => { scrollTo(link.id); setMenuOpen(false); }}
-                className={`text-left font-medium py-3 px-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-700 transition-colors ${
+                className={`text-left font-medium py-3 px-2 rounded-lg hover:bg-emerald-900 hover:text-amber-400 transition-colors ${
                   activeSection === link.id
-                    ? "text-emerald-700 bg-emerald-50"
-                    : "text-stone-700"
+                    ? "text-amber-400 bg-emerald-900"
+                    : "text-white/80"
                 }`}
               >
                 {link.label}
@@ -170,7 +156,7 @@ export function Navbar() {
             ))}
             <button
               onClick={() => { scrollTo("booking"); setMenuOpen(false); }}
-              className="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white text-center font-semibold py-3 px-5 rounded-full transition-colors"
+              className="mt-2 bg-[#D00000] hover:bg-red-700 text-white text-center font-semibold py-3 px-5 rounded-full transition-colors"
             >
               {t.nav.booking}
             </button>
@@ -184,11 +170,9 @@ export function Navbar() {
 function LocaleSwitcher({
   locale,
   setLocale,
-  scrolled,
 }: {
   locale: Locale;
   setLocale: (l: Locale) => void;
-  scrolled: boolean;
 }) {
   return (
     <div
@@ -205,8 +189,6 @@ function LocaleSwitcher({
           className={`px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
             locale === l
               ? "bg-emerald-600 text-white"
-              : scrolled
-              ? "text-stone-600 hover:bg-stone-100"
               : "text-white/80 hover:bg-white/10"
           }`}
         >

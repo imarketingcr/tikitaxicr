@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display, DM_Sans, Righteous } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/components/layout/I18nProvider";
 
@@ -11,6 +11,13 @@ const playfair = Playfair_Display({
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const righteous = Righteous({
+  variable: "--font-righteous-var",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -52,6 +59,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://tikitaxicr.com",
   },
+  icons: {
+    icon: [{ url: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778334732/mascara-lower_qxlkvh.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
@@ -62,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}
+      className={`${playfair.variable} ${dmSans.variable} ${righteous.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900">
         {/* Skip navigation for accessibility */}

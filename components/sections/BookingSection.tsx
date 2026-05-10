@@ -12,35 +12,23 @@ export function BookingSection() {
       aria-labelledby="booking-heading"
       className="section-padding relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #eef7f2 0%, #fafaf9 100%)",
+        background: "linear-gradient(180deg, #023047 0%, #0A0A0A 100%)",
       }}
     >
-      {/* Background decoration */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-30"
-          style={{ background: "radial-gradient(circle, #d4ebde, transparent 70%)" }}
-        />
-        <div
-          className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-20"
-          style={{ background: "radial-gradient(circle, #c8e4f0, transparent 70%)" }}
-        />
-      </div>
-
       <div className="container-max relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left: info panel */}
           <div className="lg:col-span-2">
-            <span className="inline-block text-emerald-600 text-sm font-bold uppercase tracking-widest mb-3">
+            <span className="inline-block text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">
               {t.booking.eyebrow}
             </span>
             <h2
               id="booking-heading"
-              className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 mb-5 leading-tight"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight"
             >
               {t.booking.title}
             </h2>
-            <p className="text-stone-500 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-white/70 text-base md:text-lg leading-relaxed mb-8">
               {t.booking.subtitle}
             </p>
 
@@ -52,27 +40,30 @@ export function BookingSection() {
                 { icon: "✅", title: t.booking.point3Title, desc: t.booking.point3Desc },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
-                  <span className="text-2xl leading-none mt-0.5" aria-hidden="true">
+                  <span className="text-2xl leading-none mt-0.5 text-amber-400" aria-hidden="true">
                     {item.icon}
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-stone-800">{item.title}</p>
-                    <p className="text-sm text-stone-500">{item.desc}</p>
+                    <p className="text-sm font-semibold text-white">{item.title}</p>
+                    <p className="text-sm text-white/60">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* WhatsApp direct link */}
-            <div className="mt-8 p-4 bg-emerald-50 border border-emerald-100 rounded-2xl">
-              <p className="text-sm text-stone-600 mb-2">
+            <div
+              className="mt-8 p-4 rounded-2xl"
+              style={{ background: "#023047", border: "1px solid rgba(255,183,3,0.3)" }}
+            >
+              <p className="text-sm text-white/70 mb-2">
                 {t.booking.chatDirect}
               </p>
               <a
                 href="https://wa.me/50660557155"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-emerald-700 font-semibold text-sm hover:text-emerald-900 transition-colors"
+                className="inline-flex items-center gap-2 text-amber-400 font-semibold text-sm hover:text-amber-300 transition-colors"
                 aria-label="Chat on WhatsApp (opens in new tab)"
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -86,7 +77,10 @@ export function BookingSection() {
 
           {/* Right: form */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-3xl shadow-xl shadow-stone-200/50 border border-stone-100 p-6 md:p-8">
+            <div
+              className="rounded-3xl p-6 md:p-8"
+              style={{ background: "rgba(2,48,71,0.8)", border: "1px solid rgba(255,183,3,0.3)" }}
+            >
               <BookingForm />
             </div>
           </div>

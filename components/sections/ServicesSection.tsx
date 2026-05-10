@@ -18,10 +18,12 @@ const TAXI_PHOTOS = [
   },
 ];
 
+const CARD_BORDER_COLORS = ["#2D6A4F", "#FFB703", "#D00000"];
+
 const SERVICE_ICONS = {
   airport: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
+      <circle cx="20" cy="20" r="18" fill="rgba(45,106,79,0.3)" />
       <path
         d="M8 24l5-2 7-10 3 3-5 4 8 5-2 2-8-3-3 3-2-2 3-3-6 3z"
         fill="#2D6A4F"
@@ -32,7 +34,7 @@ const SERVICE_ICONS = {
   ),
   tours: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
+      <circle cx="20" cy="20" r="18" fill="rgba(45,106,79,0.3)" />
       <path d="M10 28c3-6 6-4 10-8s7-8 10-6" stroke="#2D6A4F" strokeWidth="2" fill="none" strokeLinecap="round" />
       <circle cx="20" cy="17" r="4" stroke="#2D6A4F" strokeWidth="2" />
       <path d="M20 21v7" stroke="#2D6A4F" strokeWidth="2" strokeLinecap="round" />
@@ -40,7 +42,7 @@ const SERVICE_ICONS = {
   ),
   executive: (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill="#d4ebde" />
+      <circle cx="20" cy="20" r="18" fill="rgba(45,106,79,0.3)" />
       <rect x="8" y="18" width="24" height="10" rx="3" stroke="#2D6A4F" strokeWidth="2" />
       <path d="M12 18v-3a1 1 0 011-1h14a1 1 0 011 1v3" stroke="#2D6A4F" strokeWidth="2" />
       <circle cx="13" cy="30" r="2" fill="#2D6A4F" />
@@ -58,21 +60,21 @@ export function ServicesSection() {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="section-padding bg-stone-50"
+      className="section-padding bg-[#023047]"
     >
       <div className="container-max">
         {/* Heading */}
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-emerald-600 text-sm font-bold uppercase tracking-widest mb-3">
+          <span className="inline-block text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">
             {t.services.eyebrow}
           </span>
           <h2
             id="services-heading"
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 mb-4"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-amber-400 mb-4"
           >
             {t.services.title}
           </h2>
-          <p className="text-stone-500 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto">
             {t.services.subtitle}
           </p>
         </div>
@@ -84,23 +86,27 @@ export function ServicesSection() {
             return (
               <article
                 key={key}
-                className="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 border border-stone-100 overflow-hidden"
+                className="group relative rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden"
                 aria-labelledby={`service-${key}-title`}
-                style={{ animationDelay: `${i * 0.1}s` }}
+                style={{
+                  animationDelay: `${i * 0.1}s`,
+                  background: "linear-gradient(135deg, #0D1B2A, #023047)",
+                  borderLeft: `4px solid ${CARD_BORDER_COLORS[i]}`,
+                }}
               >
                 <div
                   aria-hidden="true"
                   className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: "radial-gradient(circle at top right, #d4ebde, transparent 70%)" }}
+                  style={{ background: "radial-gradient(circle at top right, rgba(255,183,3,0.1), transparent 70%)" }}
                 />
                 <div className="mb-5">{SERVICE_ICONS[key]}</div>
-                <h3 id={`service-${key}-title`} className="font-serif text-xl font-bold text-stone-900 mb-3">
+                <h3 id={`service-${key}-title`} className="font-serif text-xl font-bold text-amber-400 mb-3">
                   {svc.title}
                 </h3>
-                <p className="text-stone-500 text-sm leading-relaxed mb-6">{svc.desc}</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-6">{svc.desc}</p>
                 <ul className="flex flex-wrap gap-2" aria-label={`Features of ${svc.title}`}>
                   {svc.features.map((f) => (
-                    <li key={f} className="text-xs font-medium bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-100">
+                    <li key={f} className="text-xs font-medium bg-emerald-900/40 text-emerald-300 px-3 py-1 rounded-full border border-emerald-800">
                       {f}
                     </li>
                   ))}
@@ -112,7 +118,7 @@ export function ServicesSection() {
 
         {/* Vehicle photo strip */}
         <div className="mt-14 mb-14">
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-6">
             {t.services.vehicleLabel}
           </p>
           <div className="grid grid-cols-3 gap-3 md:gap-5 rounded-3xl overflow-hidden">
@@ -150,7 +156,7 @@ export function ServicesSection() {
             </div>
             <a
               href="#booking"
-              className="shrink-0 bg-white text-emerald-800 font-bold px-7 py-3.5 rounded-full hover:bg-amber-300 hover:text-stone-900 transition-all duration-300 shadow-lg hover:scale-105"
+              className="shrink-0 bg-amber-400 text-stone-900 font-bold px-7 py-3.5 rounded-full hover:bg-amber-300 transition-all duration-300 shadow-lg hover:scale-105"
               aria-label="Scroll to booking form"
             >
               {t.services.ctaButton}

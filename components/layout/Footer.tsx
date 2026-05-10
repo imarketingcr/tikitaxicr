@@ -11,7 +11,7 @@ export function Footer() {
       role="contentinfo"
       className="relative text-white overflow-hidden"
       style={{
-        backgroundImage: "url('/background.jpg')",
+        backgroundImage: "url('https://res.cloudinary.com/djgv9sagr/image/upload/v1778385334/background_rd1yl2.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "#080808",

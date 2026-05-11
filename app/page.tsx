@@ -5,6 +5,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BookingSection } from "@/components/sections/BookingSection";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -72,6 +73,7 @@ export default function HomePage() {
         <BookingSection />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </>
   );
 }

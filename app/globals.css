@@ -2,53 +2,19 @@
 
 /* ================================================================
    TikiTaxi CR — Design Tokens
-   Palette: Coastal Vibe — Palm Green + Night Blue + Sun Yellow + Sunset Red
+   Palette: Premium Heritage
    ================================================================ */
 
 :root {
-  /* Semantic brand tokens */
-  --color-primary: #2D6A4F;
-  --color-accent: #FFB703;
-  --color-warm: #D00000;
-  --color-deep: #023047;
-  --color-dark: #0A0A0A;
-  --color-light: #F5F0E8;
-  --font-righteous: var(--font-righteous-var), cursive;
+  --color-primary: #1B4332;   /* Deep Forest Green */
+  --color-accent:  #D4A017;   /* Old Gold */
+  --color-warm:    #8B0000;   /* Brick Red */
+  --color-dark:    #121212;   /* Carbon Black */
+  --color-light:   #F5F0E8;   /* Warm Off-White */
 
-  /* Brand colors — Palm Green (#2D6A4F) scale */
-  --color-jungle-900: #0d2219;
-  --color-jungle-800: #152e23;
-  --color-jungle-700: #1f4535;
-  --color-jungle-600: #2D6A4F;
-  --color-jungle-500: #368a5f;
-  --color-jungle-400: #47a374;
-  --color-jungle-300: #75be97;
-  --color-jungle-200: #a9d7bd;
-  --color-jungle-100: #d4ebde;
-  --color-jungle-50:  #eef7f2;
-
-  /* Night Blue (#023047) scale */
-  --color-teal-700: #012233;
-  --color-teal-600: #023047;
-  --color-teal-500: #034a6e;
-  --color-teal-400: #056294;
-  --color-teal-300: #3a8fb5;
-  --color-teal-100: #c8e4f0;
-
-  /* Sun Yellow (#FFB703) scale */
-  --color-gold-700: #b38000;
-  --color-gold-600: #cc9200;
-  --color-gold-500: #e6a500;
-  --color-gold-400: #FFB703;
-  --color-gold-300: #ffd14d;
-  --color-gold-100: #fff3c4;
-
-  --color-stone-900: #1c1917;
-  --color-stone-700: #44403c;
-  --color-stone-500: #78716c;
-  --color-stone-300: #d6d3d1;
-  --color-stone-100: #f5f5f4;
-  --color-stone-50:  #fafaf9;
+  --gradient-button:  linear-gradient(135deg, #8B0000, #5a0000);
+  --gradient-card:    linear-gradient(160deg, #1a1a1a, #0d0d0d);
+  --gradient-divider: linear-gradient(90deg, #1B4332, #D4A017, #8B0000);
 
   /* Typography */
   --font-display: var(--font-playfair), "Georgia", serif;
@@ -60,39 +26,39 @@
 }
 
 @theme inline {
-  --color-background: var(--color-stone-50);
-  --color-foreground: var(--color-stone-900);
+  --color-background: #121212;
+  --color-foreground: #F5F0E8;
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
   --font-righteous: var(--font-righteous-var), cursive;
 
-  /* Override Tailwind's emerald scale → Palm Green (#2D6A4F) */
-  --color-emerald-950: #081410;
-  --color-emerald-900: #102819;
-  --color-emerald-800: #1a4231;
-  --color-emerald-700: #245a42;
-  --color-emerald-600: #2D6A4F;
-  --color-emerald-500: #368a5f;
-  --color-emerald-400: #47a374;
-  --color-emerald-300: #75be97;
-  --color-emerald-200: #a9d7bd;
-  --color-emerald-100: #d4ebde;
-  --color-emerald-50:  #eef7f2;
+  /* Override Tailwind's emerald scale → Deep Forest Green (#1B4332) */
+  --color-emerald-950: #060f0b;
+  --color-emerald-900: #0c1f16;
+  --color-emerald-800: #122e21;
+  --color-emerald-700: #173d2c;
+  --color-emerald-600: #1B4332;
+  --color-emerald-500: #236045;
+  --color-emerald-400: #2d7a58;
+  --color-emerald-300: #4fa07d;
+  --color-emerald-200: #8ec4ae;
+  --color-emerald-100: #c6e2d8;
+  --color-emerald-50:  #e6f3ee;
 
-  /* Override Tailwind's amber scale → Sun Yellow (#FFB703) */
-  --color-amber-800: #8f6600;
-  --color-amber-700: #b38000;
-  --color-amber-600: #cc9200;
-  --color-amber-500: #e6a500;
-  --color-amber-400: #FFB703;
-  --color-amber-300: #ffd14d;
-  --color-amber-200: #ffe58a;
-  --color-amber-100: #fff3c4;
-  --color-amber-50:  #fffbeb;
+  /* Override Tailwind's amber scale → Old Gold (#D4A017) */
+  --color-amber-800: #7a5c0d;
+  --color-amber-700: #a07810;
+  --color-amber-600: #c09014;
+  --color-amber-500: #D4A017;
+  --color-amber-400: #D4A017;
+  --color-amber-300: #dcb33f;
+  --color-amber-200: #e6c86a;
+  --color-amber-100: #f0db96;
+  --color-amber-50:  #f8edc8;
 
-  /* Sunset Red — use sparingly for accents */
-  --color-red-600: #D00000;
-  --color-red-700: #a80000;
+  /* Brick Red */
+  --color-red-700: #5a0000;
+  --color-red-600: #8B0000;
 }
 
 /* ================================================================
@@ -109,7 +75,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Offset anchor targets to clear the fixed navbar (h-16 mobile / h-20 desktop) */
 section[id] {
   scroll-margin-top: 4.5rem;
 }
@@ -122,8 +87,8 @@ section[id] {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-stone-50);
-  color: var(--color-stone-900);
+  background-color: #121212;
+  color: #F5F0E8;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -135,11 +100,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ================================================================
-   Focus styles — WCAG 2.1 AA visible focus
+   Focus styles
    ================================================================ */
 
 :focus-visible {
-  outline: 3px solid var(--color-jungle-400);
+  outline: 3px solid #D4A017;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -149,14 +114,8 @@ h1, h2, h3, h4, h5, h6 {
    ================================================================ */
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
@@ -164,15 +123,10 @@ h1, h2, h3, h4, h5, h6 {
   to   { opacity: 1; }
 }
 
-@keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes pulse-ring {
-  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.5); }
-  70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(45, 106, 79, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 106, 79, 0); }
+@keyframes waBounce {
+  0%   { transform: translateY(0); }
+  40%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 .animate-fade-in-up {
@@ -201,36 +155,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: var(--section-padding-y);
 }
 
-/* Tropical diagonal divider */
-.diagonal-bottom {
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-}
-
-.diagonal-top {
-  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
-}
-
-/* Glass card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-jungle-600), var(--color-teal-600));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 .section-divider {
   border: none;
   height: 2px;
   width: 100%;
-  background: linear-gradient(90deg, #2D6A4F, #FFB703, #D00000);
+  background: linear-gradient(90deg, #1B4332, #D4A017, #8B0000);
   margin: 0;
   display: block;
 }

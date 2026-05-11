@@ -131,11 +131,14 @@ export function BookingForm() {
         className="text-center py-16 px-6 animate-fade-in-up"
       >
         <div className="text-5xl mb-6" aria-hidden="true">🎉</div>
-        <h3 className="font-serif text-3xl font-bold text-amber-400 mb-3">
+        <h3
+          className="text-3xl font-bold mb-3"
+          style={{ color: "#D4A017", fontFamily: "var(--font-righteous-var), cursive" }}
+        >
           {t.booking.success.title}
         </h3>
-        <p className="text-white/80 text-lg mb-4">{t.booking.success.message}</p>
-        <p className="text-amber-400 font-semibold text-xl">{success.confirmedAt}</p>
+        <p className="text-lg mb-4" style={{ color: "rgba(245,240,232,0.8)" }}>{t.booking.success.message}</p>
+        <p className="font-semibold text-xl" style={{ color: "#D4A017" }}>{success.confirmedAt}</p>
       </div>
     );
   }
@@ -262,7 +265,7 @@ export function BookingForm() {
             aria-label="Phone country code"
             value={form.phone_country_code}
             onChange={(e) => set("phone_country_code", e.target.value)}
-            className="w-28 shrink-0 rounded-xl border px-3 py-3 text-sm bg-[rgba(2,48,71,0.6)] text-white border-white/20 focus:border-amber-400 outline-none"
+            className="w-28 shrink-0 rounded-xl border border-[#333] px-3 py-3 text-sm bg-[#0d0d0d] text-[#F5F0E8] focus:border-[#D4A017] outline-none"
           >
             {COUNTRIES.map((c) => (
               <option key={`${c.code}-${c.dialCode}`} value={c.dialCode}>
@@ -339,7 +342,7 @@ export function BookingForm() {
           <div
             role="tooltip"
             className="mb-2 text-xs rounded-lg px-3 py-2"
-            style={{ background: "#023047", border: "1px solid rgba(255,183,3,0.3)", color: "#fcd34d" }}
+            style={{ background: "#1a1a1a", border: "1px solid rgba(212,160,23,0.3)", color: "#D4A017" }}
           >
             {t.booking.timeTooltip}
             {suggestedTime && (
@@ -407,14 +410,14 @@ export function BookingForm() {
 
       {/* Language preference */}
       <fieldset className="col-span-full md:col-span-1">
-        <legend className="text-sm font-semibold text-amber-400 mb-2">
+        <legend className="text-sm font-semibold mb-2" style={{ color: "#D4A017" }}>
           {t.booking.language}
         </legend>
         <div className="flex gap-4">
           {(["en", "es"] as const).map((lang) => (
             <label
               key={lang}
-              className="flex items-center gap-2 cursor-pointer text-sm text-white/80"
+              className="flex items-center gap-2 cursor-pointer text-sm" style={{ color: "rgba(245,240,232,0.8)" }}
             >
               <input
                 type="radio"
@@ -422,7 +425,7 @@ export function BookingForm() {
                 value={lang}
                 checked={form.language_preference === lang}
                 onChange={() => set("language_preference", lang)}
-                className="accent-emerald-600 w-4 h-4"
+                className="w-4 h-4 accent-[#8B0000]"
               />
               {lang === "en" ? t.booking.languageEn : t.booking.languageEs}
             </label>
@@ -432,14 +435,14 @@ export function BookingForm() {
 
       {/* Contact preference */}
       <fieldset className="col-span-full md:col-span-1">
-        <legend className="text-sm font-semibold text-amber-400 mb-2">
+        <legend className="text-sm font-semibold mb-2" style={{ color: "#D4A017" }}>
           {t.booking.contact}
         </legend>
         <div className="flex gap-4">
           {(["email", "whatsapp"] as const).map((method) => (
             <label
               key={method}
-              className="flex items-center gap-2 cursor-pointer text-sm text-white/80"
+              className="flex items-center gap-2 cursor-pointer text-sm" style={{ color: "rgba(245,240,232,0.8)" }}
             >
               <input
                 type="radio"
@@ -447,7 +450,7 @@ export function BookingForm() {
                 value={method}
                 checked={form.contact_preference === method}
                 onChange={() => set("contact_preference", method)}
-                className="accent-emerald-600 w-4 h-4"
+                className="w-4 h-4 accent-[#8B0000]"
               />
               {method === "email" ? t.booking.contactEmail : t.booking.contactWhatsapp}
             </label>
@@ -462,7 +465,7 @@ export function BookingForm() {
           disabled={loading}
           aria-disabled={loading}
           className="w-full disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold text-lg py-4 px-8 rounded-2xl transition-all duration-300 hover:scale-[1.01] shadow-lg focus-visible:outline-amber-400"
-          style={{ background: "linear-gradient(135deg, #2D6A4F, #D00000)" }}
+          style={{ background: "linear-gradient(135deg, #8B0000, #5a0000)", fontFamily: "var(--font-righteous-var), cursive" }}
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">
@@ -506,7 +509,8 @@ function Field({
     <div className={`flex flex-col gap-1 ${className}`}>
       <label
         htmlFor={id}
-        className="text-sm font-semibold text-amber-400"
+        className="text-sm font-semibold"
+        style={{ color: "#D4A017" }}
       >
         {label}
         {required && (
@@ -536,11 +540,10 @@ function Field({
 
 function inputClass(hasError: boolean) {
   return [
-    "w-full rounded-xl border px-4 py-3 text-sm text-white",
-    "bg-[rgba(2,48,71,0.6)] placeholder:text-white/30 outline-none transition-all duration-200",
-    "focus:ring-2",
+    "w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200",
+    "bg-[#0d0d0d] text-[#F5F0E8] placeholder:text-white/30",
     hasError
-      ? "border-red-500 focus:border-red-400 focus:ring-red-500/20"
-      : "border-white/20 hover:border-amber-400/50 focus:border-amber-400 focus:ring-amber-400/20",
+      ? "border border-red-500 focus:border-red-400"
+      : "border border-[#333] focus:border-[#D4A017]",
   ].join(" ");
 }

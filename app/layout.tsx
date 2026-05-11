@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     canonical: "https://tikitaxicr.com",
   },
   icons: {
-    icon: [{ url: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778334732/mascara-lower_qxlkvh.png", type: "image/png" }],
+    icon: [{ url: "https://res.cloudinary.com/djgv9sagr/image/upload/v1778334742/tikistaxi-lower_mjbvuc.png", type: "image/png" }],
   },
 };
 
@@ -74,7 +74,7 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${dmSans.variable} ${righteous.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50 text-stone-900">
+      <body className="min-h-full flex flex-col bg-[#121212] text-[#F5F0E8]">
         {/* Skip navigation for accessibility */}
         <a
           href="#main-content"

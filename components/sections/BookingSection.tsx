@@ -11,24 +11,26 @@ export function BookingSection() {
       id="booking"
       aria-labelledby="booking-heading"
       className="section-padding relative overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #023047 0%, #0A0A0A 100%)",
-      }}
+      style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #121212 100%)" }}
     >
       <div className="container-max relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left: info panel */}
           <div className="lg:col-span-2">
-            <span className="inline-block text-amber-400 text-sm font-bold uppercase tracking-widest mb-3">
+            <span
+              className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
+              style={{ color: "#D4A017" }}
+            >
               {t.booking.eyebrow}
             </span>
             <h2
               id="booking-heading"
-              className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight"
+              style={{ color: "#D4A017", fontFamily: "var(--font-righteous-var), cursive" }}
             >
               {t.booking.title}
             </h2>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: "rgba(245,240,232,0.7)" }}>
               {t.booking.subtitle}
             </p>
 
@@ -40,12 +42,12 @@ export function BookingSection() {
                 { icon: "✅", title: t.booking.point3Title, desc: t.booking.point3Desc },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
-                  <span className="text-2xl leading-none mt-0.5 text-amber-400" aria-hidden="true">
+                  <span className="text-2xl leading-none mt-0.5" aria-hidden="true" style={{ color: "#D4A017" }}>
                     {item.icon}
                   </span>
                   <div>
-                    <p className="text-sm font-semibold text-white">{item.title}</p>
-                    <p className="text-sm text-white/60">{item.desc}</p>
+                    <p className="text-sm font-semibold" style={{ color: "#F5F0E8" }}>{item.title}</p>
+                    <p className="text-sm" style={{ color: "rgba(245,240,232,0.6)" }}>{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -54,17 +56,20 @@ export function BookingSection() {
             {/* WhatsApp direct link */}
             <div
               className="mt-8 p-4 rounded-2xl"
-              style={{ background: "#023047", border: "1px solid rgba(255,183,3,0.3)" }}
+              style={{ background: "#1a1a1a", border: "1px solid rgba(212,160,23,0.3)" }}
             >
-              <p className="text-sm text-white/70 mb-2">
+              <p className="text-sm mb-2" style={{ color: "rgba(245,240,232,0.7)" }}>
                 {t.booking.chatDirect}
               </p>
               <a
                 href="https://wa.me/50660557155"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-amber-400 font-semibold text-sm hover:text-amber-300 transition-colors"
+                className="inline-flex items-center gap-2 font-semibold text-sm transition-colors"
+                style={{ color: "#D4A017" }}
                 aria-label="Chat on WhatsApp (opens in new tab)"
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#e6b82a"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4A017"; }}
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M10 2C5.58 2 2 5.58 2 10c0 1.57.43 3.04 1.18 4.3L2 18l3.82-1.16A8 8 0 1010 2z" fill="#25D366" />
@@ -79,7 +84,7 @@ export function BookingSection() {
           <div className="lg:col-span-3">
             <div
               className="rounded-3xl p-6 md:p-8"
-              style={{ background: "rgba(2,48,71,0.8)", border: "1px solid rgba(255,183,3,0.3)" }}
+              style={{ background: "rgba(26,26,26,0.95)", border: "1px solid #D4A017" }}
             >
               <BookingForm />
             </div>

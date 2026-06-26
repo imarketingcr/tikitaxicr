@@ -11,43 +11,62 @@ export function BookingSection() {
       id="booking"
       aria-labelledby="booking-heading"
       className="section-padding relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #1a1a1a 0%, #121212 100%)" }}
+      style={{
+        background: "radial-gradient(120% 80% at 50% 0%, rgba(30,40,22,0.7), rgba(10,13,8,1) 62%)",
+      }}
     >
       <div className="container-max relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left: info panel */}
           <div className="lg:col-span-2">
             <span
-              className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-              style={{ color: "#D4A017" }}
+              className="inline-block text-xs font-extrabold tracking-[0.26em] uppercase mb-3"
+              style={{ color: "#C8842B", fontFamily: "var(--font-hanken)" }}
             >
               {t.booking.eyebrow}
             </span>
             <h2
               id="booking-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight"
-              style={{ color: "#D4A017", fontFamily: "var(--font-righteous-var), cursive" }}
+              className="text-3xl sm:text-4xl md:text-5xl uppercase mb-4 leading-tight"
+              style={{
+                color: "#ECE4D3",
+                fontFamily: "var(--font-anton)",
+                letterSpacing: "0.012em",
+                lineHeight: 0.96,
+              }}
             >
               {t.booking.title}
             </h2>
-            <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: "rgba(245,240,232,0.7)" }}>
+            <p
+              className="text-base md:text-lg leading-relaxed mb-8"
+              style={{ color: "#9A9483", fontFamily: "var(--font-hanken)", maxWidth: "420px" }}
+            >
               {t.booking.subtitle}
             </p>
 
             {/* What to expect */}
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4">
               {[
-                { icon: "📅", title: t.booking.point1Title, desc: t.booking.point1Desc },
-                { icon: "🗺️", title: t.booking.point2Title, desc: t.booking.point2Desc },
-                { icon: "✅", title: t.booking.point3Title, desc: t.booking.point3Desc },
+                { title: t.booking.point1Title, desc: t.booking.point1Desc },
+                { title: t.booking.point2Title, desc: t.booking.point2Desc },
+                { title: t.booking.point3Title, desc: t.booking.point3Desc },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3">
-                  <span className="text-2xl leading-none mt-0.5" aria-hidden="true" style={{ color: "#D4A017" }}>
-                    {item.icon}
+                  <span
+                    className="flex-none w-7 h-7 rounded-full bg-[#6CAE3B]/14 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6CAE3B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
                   </span>
                   <div>
-                    <p className="text-sm font-semibold" style={{ color: "#F5F0E8" }}>{item.title}</p>
-                    <p className="text-sm" style={{ color: "rgba(245,240,232,0.6)" }}>{item.desc}</p>
+                    <p className="text-sm font-bold text-[#ECE4D3] mb-0.5" style={{ fontFamily: "var(--font-hanken)" }}>
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-[#9A9483]" style={{ fontFamily: "var(--font-hanken)" }}>
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -56,9 +75,9 @@ export function BookingSection() {
             {/* WhatsApp direct link */}
             <div
               className="mt-8 p-4 rounded-2xl"
-              style={{ background: "#1a1a1a", border: "1px solid rgba(212,160,23,0.3)" }}
+              style={{ background: "#11160D", border: "1px solid rgba(108,174,59,0.3)" }}
             >
-              <p className="text-sm mb-2" style={{ color: "rgba(245,240,232,0.7)" }}>
+              <p className="text-sm mb-2" style={{ color: "#9A9483", fontFamily: "var(--font-hanken)" }}>
                 {t.booking.chatDirect}
               </p>
               <a
@@ -66,10 +85,10 @@ export function BookingSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-semibold text-sm transition-colors"
-                style={{ color: "#D4A017" }}
+                style={{ color: "#A4C93F", fontFamily: "var(--font-hanken)" }}
                 aria-label="Chat on WhatsApp (opens in new tab)"
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#e6b82a"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4A017"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#6CAE3B"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#A4C93F"; }}
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M10 2C5.58 2 2 5.58 2 10c0 1.57.43 3.04 1.18 4.3L2 18l3.82-1.16A8 8 0 1010 2z" fill="#25D366" />
@@ -84,7 +103,11 @@ export function BookingSection() {
           <div className="lg:col-span-3">
             <div
               className="rounded-3xl p-6 md:p-8"
-              style={{ background: "rgba(26,26,26,0.95)", border: "1px solid #D4A017" }}
+              style={{
+                background: "#11160D",
+                border: "1px solid rgba(255,255,255,0.09)",
+                boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
+              }}
             >
               <BookingForm />
             </div>

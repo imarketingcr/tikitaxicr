@@ -2,130 +2,103 @@
 
 import { useI18n } from "@/lib/i18n";
 
-const TIKIS_LOGO = "https://res.cloudinary.com/djgv9sagr/image/upload/q_auto,f_auto/v1778334742/tikistaxi-lower_mjbvuc.png";
-const FOOTER_BG = "https://res.cloudinary.com/djgv9sagr/image/upload/v1778466715/footer_etiash.webp";
-
 export function Footer() {
   const { t } = useI18n();
-  const year = new Date().getFullYear();
 
   return (
-    <footer
-      role="contentinfo"
-      className="relative text-white overflow-hidden"
-      style={{
-        backgroundImage: `url('${FOOTER_BG}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundColor: "#121212",
-      }}
-    >
-      {/* Dark overlay */}
+    <footer className="bg-[#070A06] border-t border-white/6" role="contentinfo">
+      {/* Gradient Border */}
       <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{ background: "rgba(18,18,18,0.88)", zIndex: 0 }}
-      />
+        className="h-0.5"
+        style={{
+          background: "linear-gradient(90deg, #6CAE3B, #A4C93F, #F3B71E, #E0681B, #D8261D)",
+        }}
+      ></div>
 
-      {/* Top border */}
-      <div
-        aria-hidden="true"
-        className="relative w-full h-px"
-        style={{ background: "rgba(212,160,23,0.25)", zIndex: 1 }}
-      />
-
-      <div className="relative container-max py-12 md:py-16" style={{ zIndex: 1 }}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={TIKIS_LOGO}
-                alt="TikisTaxi CR"
-                style={{ height: "40px", width: "auto" }}
-              />
-            </div>
-            <p className="text-sm leading-relaxed" style={{ color: "rgba(245,240,232,0.7)" }}>
-              {t.footer.tagline}
-            </p>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <p
-              className="font-semibold text-sm uppercase tracking-wider mb-3"
-              style={{ color: "#D4A017" }}
+      <div className="container-max py-14">
+        <div className="flex flex-wrap gap-8 items-center justify-between mb-8">
+          {/* Logo */}
+          <div
+            className="inline-flex flex-col leading-none"
+            style={{
+              fontFamily: "var(--font-anton)",
+              letterSpacing: "0.02em",
+            }}
+          >
+            <span
+              className="text-4xl"
+              style={{
+                background: "linear-gradient(95deg, #6CAE3B 0%, #A4C93F 26%, #F3B71E 54%, #E0681B 78%, #D8261D 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
             >
-              {t.footer.contactHeading}
-            </p>
-            <ul className="space-y-2 text-sm" style={{ color: "rgba(245,240,232,0.6)" }}>
-              <li>
-                <a
-                  href="mailto:info@tikitaxicr.com"
-                  className="transition-colors"
-                  style={{ color: "rgba(245,240,232,0.6)" }}
-                  aria-label="Email TikiTaxi CR"
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4A017"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(245,240,232,0.6)"; }}
-                >
-                  info@tikitaxicr.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://wa.me/50660557155"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-colors"
-                  style={{ color: "rgba(245,240,232,0.6)" }}
-                  aria-label="WhatsApp TikiTaxi CR (opens in new tab)"
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4A017"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(245,240,232,0.6)"; }}
-                >
-                  WhatsApp: +506 6055-7155
-                </a>
-              </li>
-              <li style={{ color: "rgba(245,240,232,0.4)" }}>San José, Costa Rica</li>
-            </ul>
+              TIKIS
+            </span>
+            <span
+              className="text-2xl italic text-[#ECE4D3]"
+              style={{
+                transform: "skewX(-9deg)",
+                transformOrigin: "left",
+                letterSpacing: "0.05em",
+              }}
+            >
+              TAXI
+            </span>
           </div>
 
           {/* Links */}
-          <div>
-            <p
-              className="font-semibold text-sm uppercase tracking-wider mb-3"
-              style={{ color: "#D4A017" }}
+          <div className="flex flex-wrap gap-6 text-sm font-semibold" style={{ fontFamily: "var(--font-hanken)" }}>
+            <a
+              href="https://www.tikitaxicr.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
             >
-              {t.footer.servicesHeading}
-            </p>
-            <ul className="space-y-2 text-sm">
-              {[
-                { href: "#services", label: t.nav.services },
-                { href: "#about",    label: t.nav.about },
-                { href: "#booking",  label: t.nav.booking },
-              ].map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="transition-colors"
-                    style={{ color: "rgba(245,240,232,0.6)" }}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#D4A017"; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(245,240,232,0.6)"; }}
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              TIKITAXICR.com
+            </a>
+            <a
+              href="#"
+              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
+            >
+              Facebook
+            </a>
+            <a
+              href="#"
+              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
+            >
+              Google Maps
+            </a>
+            <a
+              href="https://wa.me/50660557155"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
+            >
+              WhatsApp 24/7
+            </a>
           </div>
         </div>
 
-        <div
-          className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs"
-          style={{ borderTop: "1px solid rgba(212,160,23,0.25)", color: "#888" }}
-        >
-          <p>© {year} TikiTaxi CR. {t.footer.rights}</p>
-          <p>Costa Rica 🌴</p>
+        {/* Bottom */}
+        <div className="text-center pt-5 border-t border-white/5">
+          <div
+            className="text-lg uppercase text-[#6CAE3B] mb-2.5"
+            style={{
+              fontFamily: "var(--font-anton)",
+              letterSpacing: "0.05em",
+              lineHeight: 1.3,
+            }}
+          >
+            {t.footer.tagline}
+          </div>
+          <div
+            className="text-xs text-[#5E5950]"
+            style={{ fontFamily: "var(--font-hanken)" }}
+          >
+            {t.footer.rights}
+          </div>
         </div>
       </div>
     </footer>

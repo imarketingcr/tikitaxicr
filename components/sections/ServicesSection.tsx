@@ -18,181 +18,217 @@ const TAXI_PHOTOS = [
   },
 ];
 
-const CARD_BORDER_COLORS = ["#1B4332", "#D4A017", "#8B0000"];
-const ICON_COLORS = ["#D4A017", "#8B0000", "#D4A017"];
-
-function ServiceIcon({ color, type }: { color: string; type: "airport" | "tours" | "executive" }) {
-  const bg = `${color}33`;
-  if (type === "airport") return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill={bg} />
-      <path d="M8 24l5-2 7-10 3 3-5 4 8 5-2 2-8-3-3 3-2-2 3-3-6 3z" fill={color} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-  if (type === "tours") return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill={bg} />
-      <path d="M10 28c3-6 6-4 10-8s7-8 10-6" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" />
-      <circle cx="20" cy="17" r="4" stroke={color} strokeWidth="2" />
-      <path d="M20 21v7" stroke={color} strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-  return (
-    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <circle cx="20" cy="20" r="18" fill={bg} />
-      <rect x="8" y="18" width="24" height="10" rx="3" stroke={color} strokeWidth="2" />
-      <path d="M12 18v-3a1 1 0 011-1h14a1 1 0 011 1v3" stroke={color} strokeWidth="2" />
-      <circle cx="13" cy="30" r="2" fill={color} />
-      <circle cx="27" cy="30" r="2" fill={color} />
-    </svg>
-  );
-}
+const SERVICE_COLORS = {
+  airport: { border: "#6CAE3B", icon: "#6CAE3B" },
+  tours: { border: "#F3B71E", icon: "#F3B71E" },
+  hourly: { border: "#D8261D", icon: "#D8261D" },
+};
 
 export function ServicesSection() {
   const { t } = useI18n();
-  const services = (["airport", "tours", "executive"] as const);
 
   return (
     <section
       id="services"
       aria-labelledby="services-heading"
-      className="section-padding"
-      style={{ background: "#121212" }}
+      className="bg-[#0C1109] border-t border-b border-white/5"
     >
-      <div className="container-max">
+      <div className="container-max section-padding">
         {/* Heading */}
-        <div className="text-center mb-12 md:mb-16">
-          <span
-            className="inline-block text-sm font-bold uppercase tracking-widest mb-3"
-            style={{ color: "#D4A017" }}
+        <div className="text-center mb-12">
+          <div
+            className="text-xs font-extrabold tracking-[0.26em] uppercase mb-3"
+            style={{ color: "#C8842B", fontFamily: "var(--font-hanken)" }}
           >
             {t.services.eyebrow}
-          </span>
+          </div>
           <h2
             id="services-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-            style={{ color: "#D4A017", fontFamily: "var(--font-righteous-var), cursive" }}
+            className="text-4xl sm:text-5xl md:text-6xl uppercase mb-3.5"
+            style={{
+              fontFamily: "var(--font-anton)",
+              letterSpacing: "0.012em",
+              color: "#ECE4D3",
+              lineHeight: 0.96,
+            }}
           >
             {t.services.title}
           </h2>
-          <p className="text-lg max-w-2xl mx-auto" style={{ color: "rgba(245,240,232,0.7)" }}>
+          <p
+            className="text-base md:text-lg text-[#9A9483] max-w-2xl mx-auto"
+            style={{ fontFamily: "var(--font-hanken)" }}
+          >
             {t.services.subtitle}
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((key, i) => {
-            const svc = t.services[key];
-            return (
-              <article
-                key={key}
-                className="group relative rounded-3xl p-8 shadow-sm overflow-hidden transition-all duration-500"
-                aria-labelledby={`service-${key}-title`}
-                style={{
-                  background: "linear-gradient(160deg, #1a1a1a, #0d0d0d)",
-                  borderLeft: `4px solid ${CARD_BORDER_COLORS[i]}`,
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderLeftColor = "#D4A017";
-                  el.style.transform = "translateY(-4px)";
-                  el.style.boxShadow = "0 8px 24px rgba(212,160,23,0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.borderLeftColor = CARD_BORDER_COLORS[i];
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                <div className="mb-5">
-                  <ServiceIcon type={key} color={ICON_COLORS[i]} />
-                </div>
-                <h3
-                  id={`service-${key}-title`}
-                  className="text-xl font-bold mb-3"
-                  style={{ color: "#D4A017", fontFamily: "var(--font-righteous-var), cursive" }}
-                >
-                  {svc.title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(245,240,232,0.7)" }}>
-                  {svc.desc}
-                </p>
-                <ul className="flex flex-wrap gap-2" aria-label={`Features of ${svc.title}`}>
-                  {svc.features.map((f) => (
-                    <li
-                      key={f}
-                      className="text-xs font-medium px-3 py-1 rounded-full"
-                      style={{
-                        background: "rgba(27,67,50,0.3)",
-                        color: "#F5F0E8",
-                        border: "1px solid #1B4332",
-                      }}
-                    >
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
-
-        {/* Vehicle photo strip */}
-        <div className="mt-14 mb-14">
-          <p
-            className="text-center text-xs font-bold uppercase tracking-widest mb-6"
-            style={{ color: "rgba(245,240,232,0.4)" }}
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {/* Airport */}
+          <div
+            className="bg-[#11160D] border border-white/7 rounded-2xl p-7 relative"
+            style={{ borderLeft: `3px solid ${SERVICE_COLORS.airport.border}` }}
           >
-            {t.services.vehicleLabel}
-          </p>
-          <div className="grid grid-cols-3 gap-3 md:gap-5 rounded-3xl overflow-hidden">
-            {TAXI_PHOTOS.map((photo) => (
-              <div
-                key={photo.src}
-                className="relative overflow-hidden rounded-2xl shadow-md"
-                style={{ aspectRatio: "4/3" }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover object-center hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 33vw, 30vw"
-                  quality={80}
-                />
-              </div>
-            ))}
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style={{ background: `${SERVICE_COLORS.airport.icon}1F` }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={SERVICE_COLORS.airport.icon} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 3 11 14"/>
+                <path d="M22 3 15 21l-4-7-7-4z"/>
+              </svg>
+            </div>
+            <h3
+              className="text-xl md:text-2xl uppercase mb-3"
+              style={{
+                fontFamily: "var(--font-anton)",
+                letterSpacing: "0.01em",
+                color: "#F3B71E",
+                lineHeight: 1.05,
+              }}
+            >
+              {t.services.airport.name}
+            </h3>
+            <p
+              className="text-sm md:text-base text-[#9A9483] mb-5"
+              style={{ fontFamily: "var(--font-hanken)", lineHeight: 1.6 }}
+            >
+              {t.services.airport.desc}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {t.services.airport.chips.map((chip, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                  style={{
+                    fontFamily: "var(--font-hanken)",
+                    color: "#A4C93F",
+                    border: "1px solid rgba(164,201,63,0.32)",
+                    background: "rgba(108,174,59,0.08)",
+                  }}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Tours */}
+          <div
+            className="bg-[#11160D] border border-white/7 rounded-2xl p-7 relative"
+            style={{ borderLeft: `3px solid ${SERVICE_COLORS.tours.border}` }}
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style={{ background: `${SERVICE_COLORS.tours.icon}1F` }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={SERVICE_COLORS.tours.icon} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 5h8a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h9"/>
+                <circle cx="6" cy="5" r="1.7" fill={SERVICE_COLORS.tours.icon} stroke="none"/>
+                <circle cx="18" cy="17" r="1.7" fill={SERVICE_COLORS.tours.icon} stroke="none"/>
+              </svg>
+            </div>
+            <h3
+              className="text-xl md:text-2xl uppercase mb-3"
+              style={{
+                fontFamily: "var(--font-anton)",
+                letterSpacing: "0.01em",
+                color: "#F3B71E",
+                lineHeight: 1.05,
+              }}
+            >
+              {t.services.tours.name}
+            </h3>
+            <p
+              className="text-sm md:text-base text-[#9A9483] mb-5"
+              style={{ fontFamily: "var(--font-hanken)", lineHeight: 1.6 }}
+            >
+              {t.services.tours.desc}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {t.services.tours.chips.map((chip, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                  style={{
+                    fontFamily: "var(--font-hanken)",
+                    color: "#A4C93F",
+                    border: "1px solid rgba(164,201,63,0.32)",
+                    background: "rgba(108,174,59,0.08)",
+                  }}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Hourly */}
+          <div
+            className="bg-[#11160D] border border-white/7 rounded-2xl p-7 relative"
+            style={{ borderLeft: `3px solid ${SERVICE_COLORS.hourly.border}` }}
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style={{ background: `${SERVICE_COLORS.hourly.icon}1F` }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={SERVICE_COLORS.hourly.icon} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l4 2"/>
+              </svg>
+            </div>
+            <h3
+              className="text-xl md:text-2xl uppercase mb-3"
+              style={{
+                fontFamily: "var(--font-anton)",
+                letterSpacing: "0.01em",
+                color: "#F3B71E",
+                lineHeight: 1.05,
+              }}
+            >
+              {t.services.hourly.name}
+            </h3>
+            <p
+              className="text-sm md:text-base text-[#9A9483] mb-5"
+              style={{ fontFamily: "var(--font-hanken)", lineHeight: 1.6 }}
+            >
+              {t.services.hourly.desc}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {t.services.hourly.chips.map((chip, i) => (
+                <span
+                  key={i}
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full"
+                  style={{
+                    fontFamily: "var(--font-hanken)",
+                    color: "#A4C93F",
+                    border: "1px solid rgba(164,201,63,0.32)",
+                    background: "rgba(108,174,59,0.08)",
+                  }}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Bottom CTA strip */}
-        <div
-          className="mt-16 rounded-3xl overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #121212, #1B4332)" }}
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 px-8 py-10 md:px-12 md:py-12">
-            <div>
-              <p
-                className="text-2xl md:text-3xl font-bold mb-1"
-                style={{ color: "#F5F0E8", fontFamily: "var(--font-righteous-var), cursive" }}
-              >
-                {t.services.ctaTitle}
-              </p>
-              <p className="text-sm" style={{ color: "rgba(245,240,232,0.7)" }}>
-                {t.services.ctaSubtitle}
-              </p>
-            </div>
-            <a
-              href="#booking"
-              className="shrink-0 font-bold px-7 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:scale-105 text-sm uppercase tracking-wide"
-              style={{ background: "#D4A017", color: "#121212", fontFamily: "var(--font-righteous-var), cursive" }}
-              aria-label="Scroll to booking form"
+        {/* Vehicle Photos */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {TAXI_PHOTOS.map((photo, i) => (
+            <div
+              key={i}
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-[#6CAE3B]/40 transition-all"
             >
-              {t.services.ctaButton}
-            </a>
-          </div>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>

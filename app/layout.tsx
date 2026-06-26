@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Righteous } from "next/font/google";
+import { Anton, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/components/layout/I18nProvider";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const righteous = Righteous({
-  variable: "--font-righteous-var",
+const anton = Anton({
+  variable: "--font-anton",
   weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
   display: "swap",
 });
@@ -72,9 +66,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${dmSans.variable} ${righteous.variable} h-full antialiased scroll-smooth`}
+      className={`${anton.variable} ${hankenGrotesk.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#121212] text-[#F5F0E8]">
+      <body className="min-h-full flex flex-col bg-[#0A0D08] text-[#ECE4D3]">
         {/* Skip navigation for accessibility */}
         <a
           href="#main-content"

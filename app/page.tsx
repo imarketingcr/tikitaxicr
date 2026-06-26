@@ -1,7 +1,10 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ValuesSection } from "@/components/sections/ValuesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { AboutSection } from "@/components/sections/AboutSection";
+import { TribesSection } from "@/components/sections/TribesSection";
+import { CultureSection } from "@/components/sections/CultureSection";
+import { WordsSection } from "@/components/sections/WordsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BookingSection } from "@/components/sections/BookingSection";
 import { Footer } from "@/components/layout/Footer";
@@ -64,9 +67,15 @@ export default function HomePage() {
       <main id="main-content" tabIndex={-1}>
         <HeroSection />
         <hr className="section-divider" aria-hidden="true" />
+        <ValuesSection />
+        <hr className="section-divider" aria-hidden="true" />
         <ServicesSection />
         <hr className="section-divider" aria-hidden="true" />
-        <AboutSection />
+        <TribesSection />
+        <hr className="section-divider" aria-hidden="true" />
+        <CultureSection />
+        <hr className="section-divider" aria-hidden="true" />
+        <WordsSection />
         <hr className="section-divider" aria-hidden="true" />
         <TestimonialsSection />
         <hr className="section-divider" aria-hidden="true" />

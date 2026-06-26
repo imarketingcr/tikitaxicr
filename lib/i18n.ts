@@ -4,55 +4,88 @@ import { createContext, useContext } from "react";
 
 export type Locale = "en" | "es";
 
+type TribeInfo = {
+  name: string;
+  sub?: string;
+  desc: string;
+};
+
 export type Translations = {
   nav: {
     services: string;
     booking: string;
+    tribes: string;
     about: string;
-    contact: string;
+    reviews: string;
   };
   hero: {
-    headline: string;
-    subheadline: string;
+    eyebrow: string;
+    tagline: string;
+    desc: string;
     cta: string;
     ctaWhatsapp: string;
-    slide1Subtitle: string;
-    slide2Subtitle: string;
-    badge: string;
-    trust1: string;
-    trust2: string;
-    trust3: string;
+    stat1: string;
+    stat1Label: string;
+    stat2: string;
+    stat2Label: string;
+    stat3: string;
+    stat3Label: string;
+  };
+  values: {
+    eyebrow: string;
+    title: string;
+    protection: { name: string; desc: string };
+    guidance: { name: string; desc: string };
+    connection: { name: string; desc: string };
+    energy: { name: string; desc: string };
+    adventure: { name: string; desc: string };
   };
   services: {
+    eyebrow: string;
     title: string;
     subtitle: string;
-    eyebrow: string;
-    vehicleLabel: string;
-    ctaTitle: string;
-    ctaSubtitle: string;
-    ctaButton: string;
-    airport: { title: string; desc: string; features: string[] };
-    tours: { title: string; desc: string; features: string[] };
-    executive: { title: string; desc: string; features: string[] };
+    airport: { name: string; desc: string; chips: string[] };
+    tours: { name: string; desc: string; chips: string[] };
+    hourly: { name: string; desc: string; chips: string[] };
   };
-  about: {
+  tribes: {
     eyebrow: string;
-    heading: string;
-    headingSub: string;
-    bio: string;
-    badge: string;
-    trust1Label: string; trust1Detail: string;
-    trust2Label: string; trust2Detail: string;
-    trust3Label: string; trust3Detail: string;
-    trust4Label: string; trust4Detail: string;
+    title: string;
+    intro: string;
+    footer: string;
+    list: TribeInfo[];
+  };
+  culture: {
+    eyebrow: string;
+    title: string;
+    p1: string;
+    p2: string;
+    guide: { name: string; desc: string };
+    protector: { name: string; desc: string };
+    energy: { name: string; desc: string };
+  };
+  words: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    footer: string;
+    list: Array<{ cab: string; tr: string; desc: string }>;
+  };
+  testimonials: {
+    eyebrow: string;
+    title: string;
+    list: Array<{ name: string; from: string; text: string }>;
   };
   booking: {
     title: string;
     subtitle: string;
     eyebrow: string;
-    point1Title: string; point1Desc: string;
-    point2Title: string; point2Desc: string;
-    point3Title: string; point3Desc: string;
+    point1Title: string;
+    point1Desc: string;
+    point2Title: string;
+    point2Desc: string;
+    point3Title: string;
+    point3Desc: string;
     chatDirect: string;
     chatWhatsapp: string;
     firstName: string;
@@ -85,16 +118,9 @@ export type Translations = {
     };
     timeTooltip: string;
   };
-  testimonials: {
-    badge: string;
-    title: string;
-    subtitle: string;
-  };
   footer: {
     tagline: string;
     rights: string;
-    contactHeading: string;
-    servicesHeading: string;
   };
 };
 
@@ -103,94 +129,217 @@ export const translations: Record<Locale, Translations> = {
     nav: {
       services: "Services",
       booking: "Book Now",
-      about: "About",
-      contact: "Contact",
+      tribes: "Tribes",
+      about: "Culture",
+      reviews: "Reviews",
     },
     hero: {
-      headline: "Your Private Driver & Tour Expert in Costa Rica",
-      subheadline: "Bilingual. Reliable. Unforgettable experiences.",
-      cta: "Book a Free Consultation",
-      ctaWhatsapp: "Chat on WhatsApp",
-      slide1Subtitle: "Volcano adventures, rainforest trails & private transfers.",
-      slide2Subtitle: "Guanacaste beaches, sunset tours & executive transport.",
-      badge: "Costa Rica",
-      trust1: "Bilingual Service",
-      trust2: "Licensed & Insured",
-      trust3: "Free Consultation",
+      eyebrow: "THE SPIRIT THAT GUIDES YOU",
+      tagline: "More than a taxi. Your guide and protector on every journey across Costa Rica.",
+      desc: "Inspired by the rich cultural heritage and artisan traditions of Costa Rica, the Tiki mask represents protection, guidance and good energy on every journey.",
+      cta: "Free Consultation",
+      ctaWhatsapp: "WhatsApp 24/7",
+      stat1: "Bilingual",
+      stat1Label: "Local drivers",
+      stat2: "24/7",
+      stat2Label: "Support",
+      stat3: "100%",
+      stat3Label: "Insured",
+    },
+    values: {
+      eyebrow: "A SYMBOL OF",
+      title: "OUR VALUES",
+      protection: {
+        name: "Protection",
+        desc: "We keep you safe from the moment you board until your destination.",
+      },
+      guidance: {
+        name: "Guidance",
+        desc: "We are your local guide, showing you the real Costa Rica.",
+      },
+      connection: {
+        name: "Connection",
+        desc: "We connect with nature, culture and the local people.",
+      },
+      energy: {
+        name: "Good Energy",
+        desc: "We transmit positive energy, exceptional service and unforgettable experiences.",
+      },
+      adventure: {
+        name: "Adventure",
+        desc: "Every journey is the beginning of a new story.",
+      },
     },
     services: {
-      title: "What We Offer",
-      subtitle: "Premium transportation and personalized tours across Costa Rica",
-      eyebrow: "What We Do",
-      vehicleLabel: "Our Vehicle",
-      ctaTitle: "Ready to explore Costa Rica?",
-      ctaSubtitle: "Book a free 1-hour consultation with your personal travel expert.",
-      ctaButton: "Book Free Consultation",
+      eyebrow: "WHAT WE DO",
+      title: "WHAT WE OFFER",
+      subtitle: "Premium transportation and personalized tours across Costa Rica.",
       airport: {
-        title: "Private Airport Transfers",
-        desc: "Door-to-door comfort from any Costa Rican airport. Modern A/C vehicle, GPS navigation, complimentary WiFi, and full insurance — so you travel with total peace of mind.",
-        features: ["A/C & WiFi", "GPS Navigation", "Full Insurance", "Door-to-door"],
+        name: "Private Airport Transfers",
+        desc: "Door-to-door comfort from any Costa Rican airport. Modern A/C vehicle, GPS, complimentary WiFi and full insurance, so you travel with total peace of mind.",
+        chips: ["A/C & WiFi", "GPS", "Full Insurance", "Door-to-door"],
       },
       tours: {
-        title: "Custom Tour Design",
-        desc: "Tell us your dream destinations — volcanoes, beaches, rainforests, wildlife. We craft a fully personalized itinerary tailored to your budget, pace, and interests.",
-        features: ["Custom Itinerary", "Any Budget", "Any Interest", "Bilingual Guide"],
+        name: "Custom Private Tours",
+        desc: "Tell us your dream destinations — volcanoes, beaches, rainforests, wildlife. We craft an itinerary tailored to your pace, interests and budget.",
+        chips: ["Custom Itinerary", "Any Budget", "Bilingual Guide"],
       },
-      executive: {
-        title: "Executive & Tourist Transport",
-        desc: "Whether it's a business trip or a family adventure, enjoy a spotless vehicle, a sober and professional driver, great music, and routes that show the real Costa Rica.",
-        features: ["Clean Vehicle", "Sober Driver", "Professional", "Punctual"],
+      hourly: {
+        name: "Executive & Hourly",
+        desc: "Whether a business trip or a family adventure: spotless vehicle, professional driver, great music and routes that show the real Costa Rica.",
+        chips: ["Spotless Vehicle", "Pro Driver", "Always on Time"],
       },
     },
-    about: {
-      eyebrow: "Your Guide",
-      heading: "Meet Luis,",
-      headingSub: "Your Personal Driver",
-      bio: "Born and raised in Costa Rica, Luis has spent years showing travelers the country's hidden gems — from misty cloud forests to pristine Pacific beaches. With him, every ride is part of the experience.",
-      badge: "Costa Rica Local",
-      trust1Label: "Bilingual",
-      trust1Detail: "Fluent English & Spanish — no communication barriers.",
-      trust2Label: "Licensed & Insured",
-      trust2Detail: "Fully certified driver with complete vehicle insurance.",
-      trust3Label: "Costa Rica Expert",
-      trust3Detail: "Local knowledge of every road, beach, and volcano.",
-      trust4Label: "5-Star Rated",
-      trust4Detail: "Trusted by hundreds of travelers from around the world.",
+    tribes: {
+      eyebrow: "TRIBES",
+      title: "ROOTED IN COSTA RICA",
+      intro: "Traditional masks are part of the soul of our land. Each design honors the indigenous tribes that have lived in harmony with nature for centuries. We do not just take you to places — we share the spirit of Costa Rica.",
+      footer: "Different tribes · One single root · One same spirit · One same journey",
+      list: [
+        {
+          name: "Brunca",
+          sub: "(Boruca)",
+          desc: "Guardians of the land and its sacred balance. They symbolize strength, resilience and a deep connection with nature.",
+        },
+        {
+          name: "Cabécar",
+          desc: "People of the rivers and the sea. They represent wisdom, adaptability and respect for all living beings.",
+        },
+        {
+          name: "Bribrí",
+          desc: "Guardians of the forest and the ancestors. They value spiritual connection, family and tradition.",
+        },
+        {
+          name: "Ngäbe",
+          desc: "People of the mountains and the sea. Known for their hospitality, crafts and strong community bonds.",
+        },
+        {
+          name: "Guaymí",
+          desc: "Warriors and dreamers. They symbolize courage, independence and harmony with the natural world.",
+        },
+        {
+          name: "Maléku",
+          desc: "People of the jaguar. They protect the land, their spirituality and ancestral knowledge.",
+        },
+        {
+          name: "Huetar",
+          desc: "Original people of the Central Valley. They are the root of our history and national identity.",
+        },
+        {
+          name: "Chorotega",
+          desc: "People of the Nicoya Peninsula. Great potters and healers, deeply connected to the earth.",
+        },
+        {
+          name: "Térraba",
+          desc: "People of the south. They represent peace, agriculture and the importance of water in life.",
+        },
+        {
+          name: "Boruca",
+          desc: "Artists and storytellers. Their masks bring legends to life and celebrate the spirit of their people.",
+        },
+      ],
+    },
+    culture: {
+      eyebrow: "OUR TIKI MASK",
+      title: "THE HEART AND SOUL OF TIKIS TAXI",
+      p1: "It represents a spiritual guide and protector of the road. Its mission is to accompany, care for and bring positive energy to all travelers and visitors to Costa Rica.",
+      p2: "More than a symbol, it is a guardian that opens paths, drives away negativity and brings good fortune on every adventure.",
+      guide: {
+        name: "Spiritual Guide",
+        desc: "Illuminates the road and accompanies you to every destination.",
+      },
+      protector: {
+        name: "Protector",
+        desc: "Takes care of your journey, your well-being and your experience.",
+      },
+      energy: {
+        name: "Positive Energy",
+        desc: "Attracts good vibes, joy and meaningful encounters.",
+      },
+    },
+    words: {
+      eyebrow: "CABÉCAR LANGUAGE",
+      title: "BÄE EBÄ · PURE LIFE",
+      intro: "We honor the Cabécar language, one of the native peoples of Costa Rica. Each word carries wisdom and a way of seeing the world in harmony with life.",
+      footer: "Pure Vida, Pure Roots.",
+      list: [
+        {
+          cab: "Bäe Ebä",
+          tr: "Good Life",
+          desc: "A wish for a full life, in harmony and well-being.",
+        },
+        {
+          cab: "Sëne Bulë",
+          tr: "Peace",
+          desc: "Inner harmony, tranquility and respect on the road.",
+        },
+        {
+          cab: "Ña Skalta",
+          tr: "Protection",
+          desc: "Spiritual strength that guides and protects on the road.",
+        },
+        {
+          cab: "Amor",
+          tr: "Love",
+          desc: "Energy that connects, heals and unites us as beings.",
+        },
+      ],
+    },
+    testimonials: {
+      eyebrow: "REVIEWS",
+      title: "WHAT OUR TRAVELERS SAY",
+      list: [
+        {
+          name: "Sarah M.",
+          from: "United States",
+          text: "From the airport we felt at home. Punctual driver, spotless car and a guide who showed us the real Costa Rica. Pura vida!",
+        },
+        {
+          name: "Lukas B.",
+          from: "Germany",
+          text: "We booked a private tour to Arenal. Perfect itinerary, great music and so much good energy. We will definitely be back.",
+        },
+        {
+          name: "Camila R.",
+          from: "Mexico",
+          text: "More than a taxi, a travel companion. Safe, authentic and always smiling. 100% recommended.",
+        },
+      ],
     },
     booking: {
-      eyebrow: "Free Consultation",
-      point1Title: "1-Hour Video Call",
-      point1Desc: "A dedicated session with your personal Costa Rica expert.",
-      point2Title: "Custom Itinerary",
-      point2Desc: "We design your perfect trip based on your interests and budget.",
-      point3Title: "No Commitment",
-      point3Desc: "The consultation is completely free. No obligation.",
+      eyebrow: "BOOK YOUR TRIP",
+      title: "FREE CONSULTATION",
+      subtitle: "Tell us where you want to go and we design your experience. No commitment.",
+      point1Title: "Fast Reply",
+      point1Desc: "We answer within minutes on WhatsApp.",
+      point2Title: "No Commitment",
+      point2Desc: "The consultation and quote are free.",
+      point3Title: "Local and Bilingual",
+      point3Desc: "Service from Costa Rican locals, in your language.",
       chatDirect: "Prefer to chat directly?",
       chatWhatsapp: "Message on WhatsApp",
-      title: "Book Your Free Consultation",
-      subtitle: "Schedule a 1-hour video call with your personal Costa Rica travel expert. We'll design your perfect trip together.",
-      firstName: "First Name",
+      firstName: "Name",
       lastName: "Last Name",
-      email: "Email Address",
+      email: "Email or WhatsApp",
       country: "Country of Origin",
       phone: "Phone Number",
       date: "Preferred Consultation Date",
       time: "Preferred Time (Costa Rica, GMT-6)",
-      places: "Places & Experiences You Want to Visit",
-      placesPlaceholder: "e.g. Arenal Volcano, Manuel Antonio, white-water rafting, coffee farm tour…",
-      special: "Special Requests (optional)",
-      specialPlaceholder: "Dietary needs, accessibility requirements, travel dates, group size…",
+      places: "Service",
+      placesPlaceholder: "Airport transfer / Private tour / Executive / Other",
+      special: "Where are we going? Dates, travelers, destinations…",
+      specialPlaceholder: "e.g. Arenal Volcano, 2 adults, June 15-20…",
       language: "Preferred Language",
       languageEn: "English",
       languageEs: "Spanish",
       contact: "Preferred Contact Method",
       contactEmail: "Email",
       contactWhatsapp: "WhatsApp",
-      submit: "Schedule My Consultation",
-      submitting: "Scheduling…",
+      submit: "Send Request",
+      submitting: "Sending…",
       success: {
-        title: "You're booked!",
-        message: "Your consultation has been confirmed. Check your email and WhatsApp for details. We look forward to meeting you!",
+        title: "Thank you!",
+        message: "We will contact you very soon. Pura vida.",
       },
       errors: {
         required: "This field is required",
@@ -202,16 +351,9 @@ export const translations: Record<Locale, Translations> = {
       },
       timeTooltip: "Consultations are available Monday–Friday, 8:00 AM – 4:00 PM (Costa Rica time, GMT-6).",
     },
-    testimonials: {
-      badge: "Testimonials",
-      title: "What Our Clients Say",
-      subtitle: "Real experiences from real travelers across Costa Rica",
-    },
     footer: {
-      tagline: "Exploring Costa Rica, one journey at a time.",
-      rights: "All rights reserved.",
-      contactHeading: "Contact",
-      servicesHeading: "Services",
+      tagline: "Pure Vida, Pure Energy, Pure Costa Rica",
+      rights: "© 2026 Tikis Taxi · TIKITAXICR.com",
     },
   },
 
@@ -219,94 +361,217 @@ export const translations: Record<Locale, Translations> = {
     nav: {
       services: "Servicios",
       booking: "Reservar",
-      about: "Nosotros",
-      contact: "Contacto",
+      tribes: "Tribus",
+      about: "Cultura",
+      reviews: "Reseñas",
     },
     hero: {
-      headline: "Tu Conductor Privado y Experto en Tours en Costa Rica",
-      subheadline: "Bilingüe. Confiable. Experiencias inolvidables.",
-      cta: "Agenda una Consulta Gratuita",
-      ctaWhatsapp: "Escríbenos por WhatsApp",
-      slide1Subtitle: "Aventuras en volcanes, senderos y traslados privados.",
-      slide2Subtitle: "Playas de Guanacaste, tours al atardecer y transporte ejecutivo.",
-      badge: "Costa Rica",
-      trust1: "Servicio Bilingüe",
-      trust2: "Licenciado y Asegurado",
-      trust3: "Consulta Gratuita",
+      eyebrow: "EL ESPÍRITU QUE TE GUÍA",
+      tagline: "Más que un taxi. Tu guía y protector en cada viaje por Costa Rica.",
+      desc: "Inspirados en la rica herencia cultural y las tradiciones artesanales de Costa Rica, la máscara Tiki representa protección, guía y buena energía en cada viaje.",
+      cta: "Consulta Gratuita",
+      ctaWhatsapp: "WhatsApp 24/7",
+      stat1: "Bilingüe",
+      stat1Label: "Choferes locales",
+      stat2: "24/7",
+      stat2Label: "Soporte",
+      stat3: "100%",
+      stat3Label: "Asegurado",
+    },
+    values: {
+      eyebrow: "UN SÍMBOLO DE",
+      title: "NUESTROS VALORES",
+      protection: {
+        name: "Protección",
+        desc: "Te mantenemos seguro desde el momento en que abordas hasta tu destino.",
+      },
+      guidance: {
+        name: "Guía",
+        desc: "Somos tu guía local, mostrándote la verdadera Costa Rica.",
+      },
+      connection: {
+        name: "Conexión",
+        desc: "Conectamos con la naturaleza, la cultura y la gente local.",
+      },
+      energy: {
+        name: "Buena Energía",
+        desc: "Transmitimos energía positiva, servicio excepcional y experiencias inolvidables.",
+      },
+      adventure: {
+        name: "Aventura",
+        desc: "Cada viaje es el comienzo de una nueva historia.",
+      },
     },
     services: {
-      title: "Lo Que Ofrecemos",
-      subtitle: "Transporte premium y tours personalizados por toda Costa Rica",
-      eyebrow: "Lo Que Hacemos",
-      vehicleLabel: "Nuestro Vehículo",
-      ctaTitle: "¿Listo para explorar Costa Rica?",
-      ctaSubtitle: "Agenda una consulta gratuita de 1 hora con tu experto personal en viajes.",
-      ctaButton: "Agenda Tu Consulta",
+      eyebrow: "LO QUE HACEMOS",
+      title: "LO QUE OFRECEMOS",
+      subtitle: "Transporte premium y tours personalizados por toda Costa Rica.",
       airport: {
-        title: "Traslados Privados al Aeropuerto",
-        desc: "Comodidad puerta a puerta desde cualquier aeropuerto de Costa Rica. Vehículo moderno con A/C, navegación GPS, WiFi gratuito y seguro completo — viaja con total tranquilidad.",
-        features: ["A/C y WiFi", "Navegación GPS", "Seguro Completo", "Puerta a Puerta"],
+        name: "Traslados Privados al Aeropuerto",
+        desc: "Comodidad puerta a puerta desde cualquier aeropuerto de Costa Rica. Vehículo con A/C, GPS, WiFi de cortesía y seguro completo, para que viajes con total tranquilidad.",
+        chips: ["A/C & WiFi", "GPS", "Seguro Total", "Puerta a Puerta"],
       },
       tours: {
-        title: "Diseño de Tours a la Medida",
-        desc: "Cuéntanos tus destinos soñados — volcanes, playas, selvas, vida silvestre. Creamos un itinerario completamente personalizado según tu presupuesto, ritmo e intereses.",
-        features: ["Itinerario Personalizado", "Cualquier Presupuesto", "Cualquier Interés", "Guía Bilingüe"],
+        name: "Tours Privados a Medida",
+        desc: "Cuéntanos tus destinos soñados — volcanes, playas, bosques, vida silvestre. Diseñamos un itinerario a tu ritmo, interés y presupuesto.",
+        chips: ["Itinerario a Medida", "Cualquier Presupuesto", "Guía Bilingüe"],
       },
-      executive: {
-        title: "Transporte Ejecutivo y Turístico",
-        desc: "Ya sea un viaje de negocios o una aventura familiar, disfruta de un vehículo impecable, un conductor profesional, buena música y rutas que muestran la verdadera Costa Rica.",
-        features: ["Vehículo Limpio", "Conductor Profesional", "Puntual", "Confiable"],
+      hourly: {
+        name: "Ejecutivo & Por Hora",
+        desc: "Sea un viaje de negocios o una aventura familiar: vehículo impecable, chofer profesional, buena música y rutas que muestran la verdadera Costa Rica.",
+        chips: ["Vehículo Impecable", "Chofer Profesional", "Puntual"],
       },
     },
-    about: {
-      eyebrow: "Tu Guía",
-      heading: "Conoce a Luis,",
-      headingSub: "Tu Conductor Personal",
-      bio: "Nacido y criado en Costa Rica, Luis lleva años mostrando a los viajeros las joyas escondidas del país — desde los neblinosos bosques nubosos hasta las prístinas playas del Pacífico. Con él, cada viaje es parte de la experiencia.",
-      badge: "Local de Costa Rica",
-      trust1Label: "Bilingüe",
-      trust1Detail: "Inglés y español fluidos — sin barreras de comunicación.",
-      trust2Label: "Licenciado y Asegurado",
-      trust2Detail: "Conductor certificado con seguro completo del vehículo.",
-      trust3Label: "Experto en Costa Rica",
-      trust3Detail: "Conocimiento local de cada camino, playa y volcán.",
-      trust4Label: "Calificación 5 Estrellas",
-      trust4Detail: "Con la confianza de cientos de viajeros de todo el mundo.",
+    tribes: {
+      eyebrow: "TRIBUS",
+      title: "ARRAIGADOS EN COSTA RICA",
+      intro: "Las máscaras tradicionales son parte del alma de nuestra tierra. Cada diseño honra a las tribus indígenas que han vivido en armonía con la naturaleza durante siglos. No solo te llevamos a lugares — compartimos el espíritu de Costa Rica.",
+      footer: "Diferentes tribus · Una sola raíz · Un mismo espíritu · Un mismo viaje",
+      list: [
+        {
+          name: "Brunca",
+          sub: "(Boruca)",
+          desc: "Guardianes de la tierra y su equilibrio sagrado. Simbolizan fuerza, resiliencia y profunda conexión con la naturaleza.",
+        },
+        {
+          name: "Cabécar",
+          desc: "Pueblo de los ríos y del mar. Representan sabiduría, adaptabilidad y respeto por todos los seres vivos.",
+        },
+        {
+          name: "Bribrí",
+          desc: "Guardianes del bosque y de los ancestros. Valoran la conexión espiritual, la familia y la tradición.",
+        },
+        {
+          name: "Ngäbe",
+          desc: "Pueblo de las montañas y del mar. Conocidos por su hospitalidad, artesanías y fuertes lazos comunitarios.",
+        },
+        {
+          name: "Guaymí",
+          desc: "Guerreros y soñadores. Simbolizan valentía, independencia y armonía con el mundo natural.",
+        },
+        {
+          name: "Maléku",
+          desc: "Pueblo del jaguar. Protegen la tierra, su espiritualidad y el conocimiento ancestral.",
+        },
+        {
+          name: "Huetar",
+          desc: "Pueblo original del Valle Central. Son la raíz de nuestra historia y de nuestra identidad nacional.",
+        },
+        {
+          name: "Chorotega",
+          desc: "Pueblo de la Península de Nicoya. Grandes alfareros y sanadores, profundamente conectados con la tierra.",
+        },
+        {
+          name: "Térraba",
+          desc: "Pueblo del sur. Representan la paz, la agricultura y la importancia del agua en la vida.",
+        },
+        {
+          name: "Boruca",
+          desc: "Artistas y narradores. Sus máscaras traen leyendas a la vida y celebran el espíritu de su pueblo.",
+        },
+      ],
+    },
+    culture: {
+      eyebrow: "NUESTRA MÁSCARA TIKI",
+      title: "EL CORAZÓN Y EL ALMA DE TIKIS TAXI",
+      p1: "Representa a un guía espiritual y protector del camino. Su misión es acompañar, cuidar y brindar energía positiva a todos los viajeros y visitantes de Costa Rica.",
+      p2: "Más que un símbolo, es un guardián que abre caminos, aleja lo negativo y trae buena fortuna en cada aventura.",
+      guide: {
+        name: "Guía Espiritual",
+        desc: "Ilumina el camino y te acompaña en cada destino.",
+      },
+      protector: {
+        name: "Protector",
+        desc: "Cuida tu viaje, tu bienestar y tu experiencia.",
+      },
+      energy: {
+        name: "Energía Positiva",
+        desc: "Atracción de buenas vibras, alegría y buenos encuentros.",
+      },
+    },
+    words: {
+      eyebrow: "IDIOMA CABÉCAR",
+      title: "BÄE EBÄ · PURA VIDA",
+      intro: "Honramos el idioma cabécar, uno de los pueblos originarios de Costa Rica. Cada palabra guarda sabiduría y un modo de ver el mundo en armonía con la vida.",
+      footer: "Pura Vida, Puras Raíces.",
+      list: [
+        {
+          cab: "Bäe Ebä",
+          tr: "Buena Vida",
+          desc: "Deseo de una vida plena, en armonía y bienestar.",
+        },
+        {
+          cab: "Sëne Bulë",
+          tr: "Paz",
+          desc: "Armonía interior, tranquilidad y respeto en el camino.",
+        },
+        {
+          cab: "Ña Skalta",
+          tr: "Protección",
+          desc: "Fuerza espiritual que guía y protege en el camino.",
+        },
+        {
+          cab: "Amor",
+          tr: "Amor",
+          desc: "Energía que conecta, cura y nos une como seres.",
+        },
+      ],
+    },
+    testimonials: {
+      eyebrow: "RESEÑAS",
+      title: "LO QUE DICEN NUESTROS VIAJEROS",
+      list: [
+        {
+          name: "Sarah M.",
+          from: "Estados Unidos",
+          text: "Desde el aeropuerto nos sentimos en casa. Conductor puntual, auto impecable y un guía que nos mostró la verdadera Costa Rica. ¡Pura vida!",
+        },
+        {
+          name: "Lukas B.",
+          from: "Alemania",
+          text: "Reservamos un tour privado a Arenal. Itinerario perfecto, buena música y muchísima buena energía. Volveremos sin duda.",
+        },
+        {
+          name: "Camila R.",
+          from: "México",
+          text: "Más que un taxi, un compañero de viaje. Seguros, auténticos y siempre con una sonrisa. 100% recomendado.",
+        },
+      ],
     },
     booking: {
-      eyebrow: "Consulta Gratuita",
-      point1Title: "Videollamada de 1 Hora",
-      point1Desc: "Una sesión dedicada con tu experto personal en Costa Rica.",
-      point2Title: "Itinerario a la Medida",
-      point2Desc: "Diseñamos tu viaje perfecto según tus intereses y presupuesto.",
-      point3Title: "Sin Compromiso",
-      point3Desc: "La consulta es completamente gratuita. Sin obligación.",
+      eyebrow: "RESERVA TU VIAJE",
+      title: "CONSULTA GRATUITA",
+      subtitle: "Cuéntanos a dónde quieres ir y diseñamos tu experiencia. Sin compromiso.",
+      point1Title: "Respuesta Rápida",
+      point1Desc: "Te contestamos en minutos por WhatsApp.",
+      point2Title: "Sin Compromiso",
+      point2Desc: "La consulta y la cotización son gratis.",
+      point3Title: "Local y Bilingüe",
+      point3Desc: "Atención de gente de Costa Rica, en tu idioma.",
       chatDirect: "¿Prefieres chatear directamente?",
       chatWhatsapp: "Escríbenos por WhatsApp",
-      title: "Agenda Tu Consulta Gratuita",
-      subtitle: "Programa una videollamada de 1 hora con tu experto personal en Costa Rica. Diseñaremos tu viaje perfecto juntos.",
       firstName: "Nombre",
       lastName: "Apellido",
-      email: "Correo Electrónico",
+      email: "Email o WhatsApp",
       country: "País de Origen",
       phone: "Número de Teléfono",
       date: "Fecha Preferida para la Consulta",
       time: "Hora Preferida (Costa Rica, GMT-6)",
-      places: "Lugares y Experiencias que Deseas Visitar",
-      placesPlaceholder: "Ej. Volcán Arenal, Manuel Antonio, rafting, tour de café…",
-      special: "Solicitudes Especiales (opcional)",
-      specialPlaceholder: "Necesidades alimentarias, accesibilidad, fechas de viaje, tamaño del grupo…",
+      places: "Servicio",
+      placesPlaceholder: "Traslado aeropuerto / Tour privado / Ejecutivo / Otro",
+      special: "¿A dónde vamos? Fechas, personas, destinos…",
+      specialPlaceholder: "Ej. Volcán Arenal, 2 adultos, 15-20 junio…",
       language: "Idioma Preferido",
       languageEn: "Inglés",
       languageEs: "Español",
       contact: "Método de Contacto Preferido",
       contactEmail: "Correo Electrónico",
       contactWhatsapp: "WhatsApp",
-      submit: "Programar Mi Consulta",
-      submitting: "Programando…",
+      submit: "Enviar Consulta",
+      submitting: "Enviando…",
       success: {
-        title: "¡Reserva confirmada!",
-        message: "Tu consulta ha sido confirmada. Revisa tu correo y WhatsApp para más detalles. ¡Esperamos conocerte pronto!",
+        title: "¡Gracias!",
+        message: "Te contactaremos muy pronto. Pura vida.",
       },
       errors: {
         required: "Este campo es obligatorio",
@@ -318,16 +583,9 @@ export const translations: Record<Locale, Translations> = {
       },
       timeTooltip: "Las consultas están disponibles de lunes a viernes, de 8:00 AM a 4:00 PM (hora de Costa Rica, GMT-6).",
     },
-    testimonials: {
-      badge: "Testimonios",
-      title: "Lo Que Dicen Nuestros Clientes",
-      subtitle: "Experiencias reales de viajeros por toda Costa Rica",
-    },
     footer: {
-      tagline: "Explorando Costa Rica, un viaje a la vez.",
-      rights: "Todos los derechos reservados.",
-      contactHeading: "Contacto",
-      servicesHeading: "Servicios",
+      tagline: "Pura Vida, Pura Energía, Pura Costa Rica",
+      rights: "© 2026 Tikis Taxi · TIKITAXICR.com",
     },
   },
 };

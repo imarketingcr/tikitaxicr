@@ -1,38 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { useI18n } from "@/lib/i18n";
-
-const MASK_URL = "https://res.cloudinary.com/djgv9sagr/image/upload/v1778334732/mascara-lower_qxlkvh.png";
-const SLIDE2_IMG = "https://res.cloudinary.com/djgv9sagr/image/upload/v1778462820/guanacaste_dco6gb.webp";
-const SLIDE3_IMG = "https://res.cloudinary.com/djgv9sagr/image/upload/v1778462654/volcan_qctsfo.webp";
-
-const CTA_STYLE: React.CSSProperties = {
-  background: "#8B0000",
-  color: "white",
-  padding: "14px 32px",
-  borderRadius: "6px",
-  fontFamily: "var(--font-righteous-var), cursive",
-  fontSize: "1.1rem",
-  textTransform: "uppercase",
-  letterSpacing: "0.05em",
-  border: "none",
-  cursor: "pointer",
-  display: "inline-block",
-};
+import Image from "next/image";
 
 export function HeroSection() {
   const { t } = useI18n();
-  const [current, setCurrent] = useState(0);
-  const TOTAL = 3;
-
-  const next = useCallback(() => setCurrent((c) => (c + 1) % TOTAL), []);
-  const prev = useCallback(() => setCurrent((c) => (c - 1 + TOTAL) % TOTAL), []);
-
-  useEffect(() => {
-    const id = setInterval(next, 6000);
-    return () => clearInterval(id);
-  }, [next]);
 
   function scrollToBooking() {
     const el = document.getElementById("booking");
@@ -41,244 +13,141 @@ export function HeroSection() {
     window.scrollTo({ top, behavior: "smooth" });
   }
 
-  function CtaButton() {
-    return (
-      <button
-        onClick={scrollToBooking}
-        style={CTA_STYLE}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = "#5a0000";
-          (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLButtonElement).style.background = "#8B0000";
-          (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-        }}
-      >
-        {t.hero.cta}
-      </button>
-    );
-  }
-
   return (
     <section
-      aria-label="Hero"
-      className="relative w-full overflow-hidden"
-      style={{ height: "100vh", minHeight: "600px" }}
+      className="relative overflow-hidden"
+      style={{
+        background: "radial-gradient(125% 95% at 50% -12%, rgba(33,45,25,0.92), rgba(10,13,8,1) 58%), radial-gradient(58% 48% at 76% 42%, rgba(108,174,59,0.12), transparent 70%)",
+      }}
     >
-      {/* ── Slide 1 — Composited / no bg image ── */}
-      <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        aria-hidden={current !== 0}
-        style={{
-          opacity: current === 0 ? 1 : 0,
-          pointerEvents: current === 0 ? "auto" : "none",
-          background: "radial-gradient(ellipse at 30% 50%, rgba(27,67,50,0.5) 0%, #121212 65%)",
-          zIndex: 1,
-        }}
-      >
-        <div className="h-full flex items-center justify-center px-4 py-20">
-          <div className="w-full max-w-6xl flex flex-col items-center text-center lg:flex-row lg:text-left lg:items-center lg:gap-0">
-            {/* Mask — 55% on desktop */}
-            <div className="flex justify-center lg:w-[55%] mb-6 lg:mb-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={MASK_URL}
-                alt="TikiTaxi CR Tiki Mask"
-                className="w-4/5 max-h-[40vh] object-contain lg:max-h-none lg:w-4/5"
-                style={{
-                  filter: "drop-shadow(0 0 40px rgba(27,67,50,0.6))",
-                  transition: "transform 0.4s ease",
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1.03)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLImageElement).style.transform = "scale(1)"; }}
-              />
+      <div className="container-max py-14 md:py-20 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+          {/* Left: Content */}
+          <div className="order-2 lg:order-1">
+            {/* Eyebrow */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-7 h-0.5 bg-[#C8842B]"></span>
+              <span
+                className="text-xs font-extrabold tracking-[0.26em] uppercase"
+                style={{ color: "#C8842B", fontFamily: "var(--font-hanken)" }}
+              >
+                {t.hero.eyebrow}
+              </span>
             </div>
 
-            {/* Text — 45% on desktop */}
-            <div className="flex flex-col items-center gap-4 lg:w-[45%] lg:items-start lg:gap-6">
-              <h1
+            {/* Logo/Title */}
+            <div className="mb-6" style={{ fontFamily: "var(--font-anton)", lineHeight: 0.84, letterSpacing: "0.015em" }}>
+              <div
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
                 style={{
-                  fontFamily: "var(--font-righteous-var), cursive",
-                  color: "#D4A017",
-                  fontSize: "clamp(2rem, 6vw, 4.5rem)",
-                  lineHeight: 1.1,
-                  textTransform: "uppercase",
-                  margin: 0,
+                  background: "linear-gradient(95deg, #6CAE3B 0%, #A4C93F 24%, #F3B71E 52%, #E0681B 76%, #D8261D 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
                 }}
               >
-                GOOD VIBES<br />GOOD RIDES
-              </h1>
-              <p style={{ color: "#F5F0E8", fontSize: "clamp(1rem, 2vw, 1.2rem)", margin: 0 }}>
-                Costa Rica&#39;s Premier Experience 🌴
-              </p>
-              <CtaButton />
+                TIKIS
+              </div>
+              <div
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl italic"
+                style={{
+                  color: "#ECE4D3",
+                  transform: "skewX(-9deg)",
+                  transformOrigin: "left",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                TAXI
+              </div>
+            </div>
+
+            {/* Tagline */}
+            <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#ECE4D3] mb-4 max-w-[520px] leading-tight" style={{ fontFamily: "var(--font-hanken)" }}>
+              {t.hero.tagline}
+            </p>
+
+            {/* Description */}
+            <p className="text-base md:text-lg text-[#9A9483] mb-8 max-w-[500px]" style={{ fontFamily: "var(--font-hanken)" }}>
+              {t.hero.desc}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4 mb-10">
+              <button
+                onClick={scrollToBooking}
+                className="bg-[#D8261D] text-white font-extrabold text-sm tracking-wider uppercase px-7 py-4 rounded-xl hover:bg-[#ef3127] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                style={{ fontFamily: "var(--font-hanken)" }}
+              >
+                {t.hero.cta}
+              </button>
+              <a
+                href="https://wa.me/50660557155"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-transparent text-[#A4C93F] font-extrabold text-sm tracking-wider uppercase px-7 py-4 rounded-xl border-2 border-[#A4C93F]/45 hover:bg-[#6CAE3B]/10 hover:border-[#A4C93F] transition-all flex items-center gap-3"
+                style={{ fontFamily: "var(--font-hanken)" }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4C93F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/>
+                </svg>
+                {t.hero.ctaWhatsapp}
+              </a>
+            </div>
+
+            {/* Stats */}
+            <div className="flex flex-wrap gap-8">
+              <div>
+                <div className="text-3xl font-normal text-[#F3B71E]" style={{ fontFamily: "var(--font-anton)" }}>
+                  {t.hero.stat1}
+                </div>
+                <div className="text-sm font-medium text-[#7D776A] mt-1.5" style={{ fontFamily: "var(--font-hanken)" }}>
+                  {t.hero.stat1Label}
+                </div>
+              </div>
+              <div className="w-px bg-white/10"></div>
+              <div>
+                <div className="text-3xl font-normal text-[#F3B71E]" style={{ fontFamily: "var(--font-anton)" }}>
+                  {t.hero.stat2}
+                </div>
+                <div className="text-sm font-medium text-[#7D776A] mt-1.5" style={{ fontFamily: "var(--font-hanken)" }}>
+                  {t.hero.stat2Label}
+                </div>
+              </div>
+              <div className="w-px bg-white/10"></div>
+              <div>
+                <div className="text-3xl font-normal text-[#F3B71E]" style={{ fontFamily: "var(--font-anton)" }}>
+                  {t.hero.stat3}
+                </div>
+                <div className="text-sm font-medium text-[#7D776A] mt-1.5" style={{ fontFamily: "var(--font-hanken)" }}>
+                  {t.hero.stat3Label}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Tiki Mask */}
+          <div className="order-1 lg:order-2 relative flex justify-center items-center">
+            {/* Glow background */}
+            <div
+              className="absolute w-3/4 aspect-square rounded-full"
+              style={{
+                background: "radial-gradient(circle, rgba(108,174,59,0.22), transparent 68%)",
+              }}
+            ></div>
+
+            {/* Mask image */}
+            <div className="relative w-full max-w-md animate-floaty animate-glow-pulse">
+              <Image
+                src="/images/masks/mask_hero.png"
+                alt="Tiki Mask"
+                width={420}
+                height={420}
+                priority
+                className="w-full h-auto rounded-2xl"
+              />
             </div>
           </div>
         </div>
-      </div>
-
-      {/* ── Slide 2 — Guanacaste ── */}
-      <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        aria-hidden={current !== 1}
-        style={{
-          opacity: current === 1 ? 1 : 0,
-          pointerEvents: current === 1 ? "auto" : "none",
-          backgroundImage: `url('${SLIDE2_IMG}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          zIndex: 1,
-        }}
-      >
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} aria-hidden="true" />
-        <div className="relative h-full flex items-center justify-center px-4" style={{ zIndex: 2 }}>
-          <div className="text-center">
-            <h1
-              style={{
-                fontFamily: "var(--font-righteous-var), cursive",
-                color: "white",
-                fontSize: "clamp(1.6rem, 4vw, 3.5rem)",
-                textTransform: "uppercase",
-                textShadow: "2px 4px 12px rgba(0,0,0,0.9)",
-                margin: "0 0 0.5rem",
-              }}
-            >
-              NOSOTROS TE TRANSPORTAMOS
-            </h1>
-            <p
-              style={{
-                fontFamily: "var(--font-righteous-var), cursive",
-                color: "#D4A017",
-                fontSize: "clamp(1.2rem, 3vw, 2.5rem)",
-                textShadow: "2px 4px 12px rgba(0,0,0,0.9)",
-                margin: "0 0 2rem",
-              }}
-            >
-              WE RIDE YOU
-            </p>
-            <CtaButton />
-          </div>
-        </div>
-      </div>
-
-      {/* ── Slide 3 — Volcán ── */}
-      <div
-        className="absolute inset-0 transition-opacity duration-1000"
-        aria-hidden={current !== 2}
-        style={{
-          opacity: current === 2 ? 1 : 0,
-          pointerEvents: current === 2 ? "auto" : "none",
-          backgroundImage: `url('${SLIDE3_IMG}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          zIndex: 1,
-        }}
-      >
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.4)" }} aria-hidden="true" />
-        <div className="relative h-full flex items-center justify-center px-4" style={{ zIndex: 2 }}>
-          <div className="text-center">
-            <h1
-              style={{
-                fontFamily: "var(--font-righteous-var), cursive",
-                color: "white",
-                fontSize: "clamp(2rem, 5vw, 4rem)",
-                textTransform: "uppercase",
-                textShadow: "2px 4px 12px rgba(0,0,0,0.9)",
-                margin: "0 0 0.5rem",
-              }}
-            >
-              VIAJE TRANQUILO
-            </h1>
-            <p
-              style={{
-                fontFamily: "var(--font-righteous-var), cursive",
-                color: "#D4A017",
-                fontSize: "clamp(1.2rem, 3vw, 2.5rem)",
-                textShadow: "2px 4px 12px rgba(0,0,0,0.9)",
-                margin: "0 0 2rem",
-              }}
-            >
-              SMOOTH RIDE
-            </p>
-            <CtaButton />
-          </div>
-        </div>
-      </div>
-
-      {/* ── Diagonal bottom clip ── */}
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-16"
-        style={{
-          background: "#121212",
-          clipPath: "polygon(0 60%, 100% 0, 100% 100%, 0 100%)",
-          zIndex: 10,
-        }}
-      />
-
-      {/* ── Prev arrow ── */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 hover:scale-110"
-        style={{
-          left: "1rem",
-          zIndex: 20,
-          background: "rgba(18,18,18,0.75)",
-          color: "#D4A017",
-          border: "1px solid rgba(212,160,23,0.4)",
-        }}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
-      {/* ── Next arrow ── */}
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 hover:scale-110"
-        style={{
-          right: "1rem",
-          zIndex: 20,
-          background: "rgba(18,18,18,0.75)",
-          color: "#D4A017",
-          border: "1px solid rgba(212,160,23,0.4)",
-        }}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
-      {/* ── Dot indicators ── */}
-      <div
-        className="absolute flex gap-2"
-        style={{ bottom: "4.5rem", left: "50%", transform: "translateX(-50%)", zIndex: 20 }}
-        role="tablist"
-        aria-label="Slide indicators"
-      >
-        {Array.from({ length: TOTAL }).map((_, i) => (
-          <button
-            key={i}
-            role="tab"
-            aria-selected={current === i}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => setCurrent(i)}
-            style={{
-              width: current === i ? "24px" : "8px",
-              height: "8px",
-              borderRadius: "4px",
-              background: current === i ? "#D4A017" : "rgba(212,160,23,0.35)",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              padding: 0,
-            }}
-          />
-        ))}
       </div>
     </section>
   );

@@ -2,63 +2,69 @@
 
 /* ================================================================
    TikiTaxi CR — Design Tokens
-   Palette: Premium Heritage
+   Palette: Tiki Tribal
    ================================================================ */
 
 :root {
-  --color-primary: #1B4332;   /* Deep Forest Green */
-  --color-accent:  #D4A017;   /* Old Gold */
-  --color-warm:    #8B0000;   /* Brick Red */
-  --color-dark:    #121212;   /* Carbon Black */
-  --color-light:   #F5F0E8;   /* Warm Off-White */
+  --color-tiki-green: #6CAE3B;   /* Tiki Green */
+  --color-lima:       #A4C93F;   /* Lima */
+  --color-oro:        #F3B71E;   /* Oro (Gold) */
+  --color-cobre:      #C8842B;   /* Cobre (Copper) */
+  --color-tiki-red:   #D8261D;   /* Rojo Tiki */
+  --color-jungla:     #0A0D08;   /* Jungla (Dark) */
+  --color-hueso:      #ECE4D3;   /* Hueso (Light) */
 
-  --gradient-button:  linear-gradient(135deg, #8B0000, #5a0000);
-  --gradient-card:    linear-gradient(160deg, #1a1a1a, #0d0d0d);
-  --gradient-divider: linear-gradient(90deg, #1B4332, #D4A017, #8B0000);
+  --gradient-tiki:    linear-gradient(95deg, #6CAE3B 0%, #A4C93F 26%, #F3B71E 54%, #E0681B 78%, #D8261D 100%);
+  --gradient-button:  linear-gradient(135deg, #D8261D, #b81e16);
+  --gradient-card:    linear-gradient(160deg, #11160d, #0c1109);
+  --gradient-divider: linear-gradient(90deg, #6CAE3B, #A4C93F, #F3B71E, #E0681B, #D8261D);
 
   /* Typography */
-  --font-display: var(--font-playfair), "Georgia", serif;
-  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-anton), "Impact", sans-serif;
+  --font-body: var(--font-hanken), system-ui, sans-serif;
 
   /* Spacing rhythm */
   --section-padding-y: clamp(4rem, 8vw, 7rem);
-  --container-max: 1200px;
+  --container-max: 1180px;
 }
 
 @theme inline {
-  --color-background: #121212;
-  --color-foreground: #F5F0E8;
+  --color-background: #0A0D08;
+  --color-foreground: #ECE4D3;
   --font-sans: var(--font-body);
-  --font-serif: var(--font-display);
-  --font-righteous: var(--font-righteous-var), cursive;
+  --font-display: var(--font-anton), "Impact", sans-serif;
 
-  /* Override Tailwind's emerald scale → Deep Forest Green (#1B4332) */
-  --color-emerald-950: #060f0b;
-  --color-emerald-900: #0c1f16;
-  --color-emerald-800: #122e21;
-  --color-emerald-700: #173d2c;
-  --color-emerald-600: #1B4332;
-  --color-emerald-500: #236045;
-  --color-emerald-400: #2d7a58;
-  --color-emerald-300: #4fa07d;
-  --color-emerald-200: #8ec4ae;
-  --color-emerald-100: #c6e2d8;
-  --color-emerald-50:  #e6f3ee;
+  /* Tiki Green scale */
+  --color-green-900: #1a2b11;
+  --color-green-800: #2d481d;
+  --color-green-700: #406529;
+  --color-green-600: #538235;
+  --color-green-500: #6CAE3B;
+  --color-green-400: #89be5f;
+  --color-green-300: #a6ce83;
+  --color-green-200: #c3dea7;
+  --color-green-100: #e0efcb;
 
-  /* Override Tailwind's amber scale → Old Gold (#D4A017) */
-  --color-amber-800: #7a5c0d;
-  --color-amber-700: #a07810;
-  --color-amber-600: #c09014;
-  --color-amber-500: #D4A017;
-  --color-amber-400: #D4A017;
-  --color-amber-300: #dcb33f;
-  --color-amber-200: #e6c86a;
-  --color-amber-100: #f0db96;
-  --color-amber-50:  #f8edc8;
+  /* Oro (Gold) scale */
+  --color-amber-900: #614908;
+  --color-amber-800: #91760c;
+  --color-amber-700: #c29610;
+  --color-amber-600: #F3B71E;
+  --color-amber-500: #F3B71E;
+  --color-amber-400: #f5c548;
+  --color-amber-300: #f8d372;
+  --color-amber-200: #fae19c;
+  --color-amber-100: #fdefc6;
 
-  /* Brick Red */
-  --color-red-700: #5a0000;
-  --color-red-600: #8B0000;
+  /* Tiki Red */
+  --color-red-700: #a81f17;
+  --color-red-600: #D8261D;
+  --color-red-500: #D8261D;
+  --color-red-400: #e04f47;
+
+  /* Cobre (Copper) */
+  --color-orange-600: #C8842B;
+  --color-orange-500: #C8842B;
 }
 
 /* ================================================================
@@ -87,16 +93,18 @@ section[id] {
 
 body {
   font-family: var(--font-body);
-  background-color: #121212;
-  color: #F5F0E8;
+  background-color: #0A0D08;
+  color: #ECE4D3;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-righteous-var), var(--font-display);
-  line-height: 1.2;
+  font-family: var(--font-display);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 /* ================================================================
@@ -104,9 +112,14 @@ h1, h2, h3, h4, h5, h6 {
    ================================================================ */
 
 :focus-visible {
-  outline: 3px solid #D4A017;
+  outline: 3px solid #6CAE3B;
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+::selection {
+  background: #6CAE3B;
+  color: #0A0D08;
 }
 
 /* ================================================================
@@ -129,12 +142,34 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: translateY(0); }
 }
 
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 30px rgba(108, 174, 59, 0.32)) drop-shadow(0 22px 44px rgba(0, 0, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 48px rgba(163, 201, 63, 0.5)) drop-shadow(0 22px 44px rgba(0, 0, 0, 0.6));
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.7s ease both;
 }
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease both;
+}
+
+.animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 5s ease-in-out infinite;
 }
 
 /* ================================================================
@@ -157,9 +192,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-divider {
   border: none;
-  height: 2px;
+  height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, #1B4332, #D4A017, #8B0000);
+  background: linear-gradient(90deg, #6CAE3B, #A4C93F, #F3B71E, #E0681B, #D8261D);
   margin: 0;
   display: block;
 }

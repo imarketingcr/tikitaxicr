@@ -51,24 +51,12 @@ export function Footer() {
           {/* Links */}
           <div className="flex flex-wrap gap-6 text-sm font-semibold" style={{ fontFamily: "var(--font-hanken)" }}>
             <a
-              href="https://www.tikitaxicr.com"
+              href="https://www.facebook.com/profile.php?id=61590352741942"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
             >
-              TIKITAXICR.com
-            </a>
-            <a
-              href="#"
-              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
-            >
               Facebook
-            </a>
-            <a
-              href="#"
-              className="text-[#CFC8B8] hover:text-[#F3B71E] transition-colors"
-            >
-              Google Maps
             </a>
             <a
               href="https://wa.me/50660557155"
